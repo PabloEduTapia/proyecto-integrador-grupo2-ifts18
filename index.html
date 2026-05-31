@@ -1,538 +1,437 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IFTS N°18 · Supermarket Sales 2014-2017</title>
-  <style>
-    :root{
-      --blue:#0a4a8f;--blue2:#063b73;--light:#f6f8fb;--ink:#0a0d12;--muted:#5d6675;--line:#dde3ea;
-      --green:#1f9d67;--red:#d64545;--amber:#f2a93b;--violet:#6a5acd;--card:#fff;--shadow:0 16px 38px rgba(0,0,0,.09);
-      --radius:16px;--max:1320px;
-    }
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:var(--ink);line-height:1.55}
-    a{color:inherit;text-decoration:none}.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .nav{max-width:var(--max);margin:auto;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 22px}.brand{font-weight:800;color:var(--blue);font-size:18px;letter-spacing:.2px}.navlinks{display:flex;gap:24px;font-weight:700;font-size:14px}.navlinks a{padding:20px 0;border-bottom:3px solid transparent}.navlinks a.active,.navlinks a:hover{color:var(--blue);border-bottom-color:var(--blue)}
-    .mobileMenu{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-weight:800;color:var(--blue)}
-    .section{scroll-margin-top:82px}.wrap{max-width:var(--max);margin:auto;padding:72px 22px}.hero{background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);border-bottom:1px solid var(--line)}.heroGrid{display:grid;grid-template-columns:1.03fr .97fr;gap:64px;align-items:center;min-height:520px}.eyebrow{display:inline-flex;gap:8px;align-items:center;background:#eaf2fc;color:var(--blue);font-weight:800;border-radius:999px;padding:7px 12px;font-size:13px}.hero h1{font-size:58px;line-height:1.05;margin:22px 0 20px;letter-spacing:-2px}.hero h1 span{color:var(--blue)}.hero p{font-size:20px;color:var(--muted);max-width:610px}.cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}.btn{border:1px solid var(--blue);border-radius:10px;padding:14px 20px;font-weight:800;background:#fff;color:var(--blue);cursor:pointer}.btn.primary{background:var(--blue);color:white}.btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(10,74,143,.14)}
-    .heroCard{height:300px;border-radius:14px;background:radial-gradient(circle at 70% 20%,#62cdf6 0 2px,transparent 3px),linear-gradient(145deg,#0c2b4b,#123e68 48%,#08223e);box-shadow:var(--shadow);position:relative;overflow:hidden}.heroCard:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 38px,rgba(255,255,255,.05) 39px 40px);opacity:.45}.wave{position:absolute;left:-30px;right:-30px;top:70px;height:160px}.barMesh{position:absolute;right:55px;bottom:35px;display:flex;gap:5px;align-items:end}.barMesh span{width:7px;background:#56b8ee;border-radius:4px 4px 0 0;opacity:.8}.dotline{position:absolute;inset:0}.dotline svg{width:100%;height:100%}
-    h2{font-size:34px;line-height:1.1;margin:0 0 28px;letter-spacing:-.7px}.lead{font-size:18px;color:var(--muted);max-width:840px}.grid2{display:grid;grid-template-columns:2fr 1fr;gap:28px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 8px 24px rgba(10,20,40,.035)}.card h3{margin:0 0 12px;font-size:20px}.muted{color:var(--muted)}.kpi{padding:20px}.kpi .value{font-size:30px;font-weight:900;color:var(--blue);letter-spacing:-.5px}.kpi .label{font-size:13px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.5px}.kpi small{color:var(--muted)}
-    .insights li{margin:0 0 14px}.pillRow{display:flex;gap:10px;flex-wrap:wrap}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-weight:800;font-size:13px}.pill.good{color:var(--green);background:#eefaf4;border-color:#d6f1e2}.pill.bad{color:var(--red);background:#fff0f0;border-color:#ffd1d1}.pill.warn{color:#9d6500;background:#fff6e8;border-color:#ffe1a6}.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:32px}.step{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff;position:relative}.step b{display:block;color:var(--blue);font-size:15px}.step span{font-size:13px;color:var(--muted)}.step:before{content:attr(data-n);display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--blue);color:#fff;font-weight:900;margin-bottom:12px}.method{background:var(--light);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .dash{background:#f8fafc;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.dashboardShell{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:start}.sidePanel{position:sticky;top:86px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.sidePanel h3{margin:0 0 14px}.filterBtn,.tabBtn{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px 12px;margin-bottom:8px;font-weight:800;cursor:pointer;color:#172033}.filterBtn.active,.tabBtn.active{background:var(--blue);color:#fff;border-color:var(--blue)}.dashGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.chartCard{min-height:430px}.chartHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.chartHead h3{margin:0;font-size:19px}.controls{display:flex;gap:8px;flex-wrap:wrap}.miniBtn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 11px;font-weight:800;font-size:12px;cursor:pointer}.miniBtn.active{background:#0f4e8c;color:#fff;border-color:#0f4e8c}.chart{height:305px;width:100%;position:relative}.chart svg{width:100%;height:100%;overflow:visible}.axis text,.labelText{font-size:11px;fill:#596579}.tickLine{stroke:#e8edf3;stroke-width:1}.zeroLine{stroke:#8792a2;stroke-width:1.2}.bar{transition:opacity .2s,filter .2s}.bar:hover,.point:hover,.bubble:hover,.slice:hover{filter:brightness(.92);cursor:pointer}.legend{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);font-weight:800;margin-top:8px}.leg{display:inline-flex;gap:6px;align-items:center}.sw{width:12px;height:12px;border-radius:3px;display:inline-block}.tooltip{position:fixed;pointer-events:none;background:#111827;color:#fff;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.35;box-shadow:0 10px 24px rgba(0,0,0,.22);opacity:0;transform:translate(-50%,-120%);z-index:999;max-width:260px}.tableWrap{overflow:auto}.dataTable{width:100%;border-collapse:collapse;font-size:13px}.dataTable th,.dataTable td{padding:11px 9px;border-bottom:1px solid var(--line);text-align:left}.dataTable th{color:var(--blue);background:#f0f5fb;position:sticky;top:0}.goodTxt{color:var(--green);font-weight:900}.badTxt{color:var(--red);font-weight:900}.warnTxt{color:#b57400;font-weight:900}
-    .findings{background:#fff}.findingGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.finding{position:relative;overflow:hidden}.finding:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--blue)}.finding h3{padding-top:8px}.icon{width:44px;height:44px;border-radius:12px;background:#eaf2fc;display:grid;place-items:center;color:var(--blue);font-size:22px;margin-bottom:14px}.docs{background:#fff}.docGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.docCard{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start}.docIcon{width:46px;height:46px;border-radius:12px;background:#edf2f7;display:grid;place-items:center;font-size:22px}.docCard a{color:var(--blue);font-weight:900}.teamGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.member{text-align:center}.avatar{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(145deg,#eaf2fc,#dbeafe);color:var(--blue);font-weight:900;font-size:22px}.contact{background:#f7f8fa;border-top:1px solid var(--line)}.footer{padding:28px 22px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
-    .fadeUp{opacity:0;transform:translateY(24px);transition:all .7s ease}.fadeUp.in{opacity:1;transform:none}.caption{font-size:13px;color:var(--muted);margin-top:10px}.sectionDivider{height:1px;background:var(--line);margin:26px 0}.qualityGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.quality{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}.quality b{font-size:26px;color:var(--blue)}
-    @media(max-width:980px){.heroGrid,.grid2,.dashboardShell,.dashGrid,.docGrid{grid-template-columns:1fr}.grid4,.grid3,.findingGrid,.teamGrid,.pipeline,.qualityGrid{grid-template-columns:1fr 1fr}.sidePanel{position:relative;top:auto}.hero h1{font-size:46px}.navlinks{display:none;position:absolute;left:0;right:0;top:64px;background:#fff;border-bottom:1px solid var(--line);padding:12px 22px;flex-direction:column;gap:0}.navlinks.open{display:flex}.navlinks a{padding:10px 0}.mobileMenu{display:block}}
-    @media(max-width:620px){.grid4,.grid3,.findingGrid,.teamGrid,.pipeline,.qualityGrid{grid-template-columns:1fr}.hero h1{font-size:38px}.wrap{padding:54px 18px}.chart{height:280px}.nav{padding:0 16px}.brand{font-size:16px}}
-    /* --- Refinamientos solicitados --- */
-    .topbar{box-shadow:0 2px 12px rgba(10,20,40,.035)}
-    .hero{background:linear-gradient(180deg,#ffffff 0%,#f9fbfd 100%)}
-    .heroGrid{min-height:560px}
-    .hero h1{font-size:62px;letter-spacing:-2.4px}.hero p{font-size:21px;line-height:1.55;color:#586274}
-    .docGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}.docCard{min-height:176px;padding:28px 30px;transition:transform .25s ease, box-shadow .25s ease}.docCard h3{font-size:25px;margin-bottom:6px}.docCard p{max-width:500px}.docCard:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(10,20,40,.08)}.docIcon{width:52px;height:52px;border-radius:12px;background:#e9eff6;font-size:23px}
-    .chartCard{position:relative}.chartCard .openChart{position:absolute;right:22px;bottom:18px;border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 6px 14px rgba(10,20,40,.06)}.chartCard .openChart:hover{background:var(--blue);color:#fff;border-color:var(--blue)}.chart{cursor:zoom-in}.chartNote{font-size:12px;fill:#6b7280}
-    .modalOverlay{position:fixed;inset:0;background:rgba(7,16,30,.62);z-index:1000;display:none;align-items:center;justify-content:center;padding:28px}.modalOverlay.open{display:flex}.modalBox{width:min(1180px,96vw);max-height:92vh;background:#fff;border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,.35);overflow:hidden;display:grid;grid-template-rows:auto 1fr auto}.modalHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:24px 28px;border-bottom:1px solid var(--line)}.modalHeader h3{font-size:26px;margin:0 0 6px}.modalHeader p{margin:0;color:var(--muted)}.modalActions{display:flex;gap:8px;align-items:center}.modalBtn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-weight:900;cursor:pointer;color:#172033}.modalBtn:hover{background:#f4f7fb}.modalBody{padding:22px 28px 10px;overflow:auto}.modalChart{height:64vh;min-height:520px;transform-origin:top left;transition:transform .2s ease}.modalChart svg{width:100%;height:100%;overflow:visible}.modalFooter{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid var(--line);padding:14px 28px;color:var(--muted);font-size:13px}
-    .siteFooter{background:#fff;border-top:1px solid var(--line);padding:58px 22px 0}.siteFooter .footerInner{max-width:var(--max);margin:auto}.footerGrid{display:grid;grid-template-columns:1.25fr .9fr .9fr 1fr;gap:54px;padding:0 0 40px}.footerBrand{font-size:26px;font-weight:900;margin:0 0 14px;color:#0a0d12}.footerTitle{font-size:16px;font-weight:900;margin:0 0 18px;color:#0a0d12}.footerText,.footerLink{color:#424b5c;font-size:15px;line-height:1.6}.footerLink{display:block;margin:8px 0}.footerLink:hover{color:var(--blue)}.footerBottom{border-top:1px solid var(--line);padding:22px 0;display:flex;justify-content:space-between;gap:20px;align-items:center;color:#566175;font-size:14px}
-    @media(max-width:980px){.hero h1{font-size:48px}.docGrid,.footerGrid{grid-template-columns:1fr 1fr}.modalChart{min-height:430px}.footerBottom{flex-direction:column;align-items:flex-start}}@media(max-width:620px){.hero h1{font-size:40px}.docGrid,.footerGrid{grid-template-columns:1fr}.docCard{grid-template-columns:48px 1fr;padding:22px}.modalOverlay{padding:12px}.modalBox{border-radius:16px}.modalHeader,.modalBody,.modalFooter{padding-left:18px;padding-right:18px}.modalChart{min-height:360px;height:58vh}}
-
-
-    /* --- Theme Light/Dark + modal fixes --- */
-    .themeToggle{
-      border:1px solid var(--line);
-      background:var(--card);
-      color:var(--blue);
-      border-radius:999px;
-      padding:8px 12px;
-      font-weight:900;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      box-shadow:0 6px 16px rgba(10,20,40,.05);
-      transition:transform .2s ease, background .2s ease, color .2s ease;
-      white-space:nowrap;
-    }
-    .themeToggle:hover{transform:translateY(-1px);background:#edf5ff}
-    .themeIcon{font-size:16px;line-height:1}
-    .themeText{font-size:13px}
-    [data-theme="dark"]{
-      color-scheme:dark;
-      --blue:#62a8ff;
-      --blue2:#8ac0ff;
-      --light:#111827;
-      --ink:#f8fafc;
-      --muted:#c7d0dd;
-      --line:#2d3748;
-      --card:#111827;
-      --shadow:0 18px 45px rgba(0,0,0,.36);
-    }
-    [data-theme="dark"] body{background:#0b1120;color:var(--ink)}
-    [data-theme="dark"] .topbar{background:rgba(11,17,32,.92);border-bottom-color:#253044}
-    [data-theme="dark"] .brand{color:#8ec5ff}
-    [data-theme="dark"] .navlinks a{color:#e5edf7}
-    [data-theme="dark"] .navlinks a.active,[data-theme="dark"] .navlinks a:hover{color:#8ec5ff;border-bottom-color:#8ec5ff}
-    [data-theme="dark"] .hero{background:linear-gradient(180deg,#0b1120 0%,#111827 100%);border-bottom-color:#253044}
-    [data-theme="dark"] .hero h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] .footerBrand,[data-theme="dark"] .footerTitle{color:#f8fafc}
-    [data-theme="dark"] .hero h1 span{color:#8ec5ff}
-    [data-theme="dark"] .eyebrow{background:#102a46;color:#9dccff}
-    [data-theme="dark"] .card,[data-theme="dark"] .docCard,[data-theme="dark"] .sidePanel,[data-theme="dark"] .step,[data-theme="dark"] .quality,[data-theme="dark"] .modalBox{background:#111827;border-color:#2d3748;color:#f8fafc}
-    [data-theme="dark"] .dash,[data-theme="dark"] .method,[data-theme="dark"] .contact{background:#0f172a;border-color:#253044}
-    [data-theme="dark"] .docs,[data-theme="dark"] .findings,[data-theme="dark"] .siteFooter{background:#0b1120;border-color:#253044}
-    [data-theme="dark"] .docIcon,[data-theme="dark"] .icon,[data-theme="dark"] .avatar{background:#1f2a3b;color:#9dccff}
-    [data-theme="dark"] .btn,[data-theme="dark"] .filterBtn,[data-theme="dark"] .tabBtn,[data-theme="dark"] .miniBtn,[data-theme="dark"] .modalBtn,[data-theme="dark"] .themeToggle,[data-theme="dark"] .chartCard .openChart{
-      background:#0f172a;color:#dceaff;border-color:#2d3748;
-    }
-    [data-theme="dark"] .btn.primary,[data-theme="dark"] .filterBtn.active,[data-theme="dark"] .tabBtn.active,[data-theme="dark"] .miniBtn.active,[data-theme="dark"] .chartCard .openChart:hover{
-      background:#2563eb;color:#fff;border-color:#2563eb;
-    }
-    [data-theme="dark"] .themeToggle:hover{background:#1d2b42}
-    [data-theme="dark"] .dataTable th{background:#142238;color:#a8d2ff}
-    [data-theme="dark"] .dataTable th,[data-theme="dark"] .dataTable td{border-bottom-color:#2d3748}
-    [data-theme="dark"] .labelText,[data-theme="dark"] .chartNote{fill:#cbd5e1}
-    [data-theme="dark"] .tickLine{stroke:#263247}
-    [data-theme="dark"] .zeroLine{stroke:#64748b}
-    [data-theme="dark"] .footerText,[data-theme="dark"] .footerLink,[data-theme="dark"] .footerBottom,[data-theme="dark"] .muted,[data-theme="dark"] .lead{color:#c7d0dd}
-    [data-theme="dark"] .modalOverlay{background:rgba(0,0,0,.72)}
-    [data-theme="dark"] .tooltip{background:#f8fafc;color:#0b1120}
-    [data-theme="dark"] .heroCard{box-shadow:0 20px 55px rgba(0,0,0,.55)}
-
-  
-    /* --- Corrección gráficos/modal --- */
-    .tooltip{z-index:3000!important;max-width:320px!important}
-    .modalOverlay{z-index:2000!important}
-    .modalChart{cursor:default;transform-origin:top center!important}
-    .axisLabel{font-size:11px;fill:var(--muted)}
-    .scaleText{font-size:11px;fill:var(--muted)}
-    [data-theme="dark"] .scaleText,[data-theme="dark"] .axisLabel,[data-theme="dark"] .labelText,[data-theme="dark"] .chartNote{fill:#b8c1d1!important}
-    [data-theme="dark"] .tickLine{stroke:#273244!important}
-    [data-theme="dark"] .zeroLine{stroke:#64748b!important}
-
-  </style>
+  <title>PPIV · Proyecto Integrador · Supermarket Sales</title>
+  <meta name="description" content="Trabajo práctico final de PPIV: Proyecto Integrador - IFTS N°18 - Supermarket Sales 2014-2017." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-  <div class="topbar">
+  <header class="topbar">
     <nav class="nav">
-      <a class="brand" href="#inicio">IFTS N°18 · Supermarket Sales</a>
-      <button class="mobileMenu" id="mobileMenu">Menú</button>
-      <div class="navlinks" id="navlinks">
-        <a href="#inicio">Inicio</a><a href="#resumen">Resumen</a><a href="#metodologia">Metodología</a><a href="#dashboard">Dashboard</a><a href="#rfm">RFM</a><a href="#hallazgos">Hallazgos</a><a href="#documentos">Documentos</a><a href="#equipo">Equipo</a><a href="#contacto">Contacto</a>
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">PPIV</span>
+        <span>Proyecto Integrador</span>
+      </a>
+      <button id="mobileMenu" class="mobile-menu" type="button" aria-label="Abrir menú">Menú</button>
+      <div id="navlinks" class="navlinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#consigna">Consigna</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#dashboard">Análisis</a>
+        <a href="#rfm">RFM</a>
+        <a href="#conclusiones">Conclusiones</a>
+        <a href="#archivos">Archivos</a>
+        <a href="#equipo">Equipo</a>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambiar tema">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+        </button>
       </div>
-      <button class="themeToggle" id="themeToggle" type="button" aria-label="Cambiar tema">
-        <span class="themeIcon" id="themeIcon">🌙</span>
-        <span class="themeText" id="themeText">Oscuro</span>
-      </button>
     </nav>
-  </div>
+  </header>
 
-  <section id="inicio" class="hero section">
-    <div class="wrap heroGrid">
-      <div class="fadeUp">
-        <div class="eyebrow">📊 Proyecto Integrador · Ciencia de Datos</div>
-        <h1>Proyecto Integrador<br><span>Supermarket Sales</span><br>2014–2017</h1>
-        <p>Un sitio one page para presentar el análisis completo: limpieza del dato, EDA, rentabilidad, descuentos, logística, segmentación RFM e insights comerciales accionables.</p>
-        <div class="cta"><a class="btn primary" href="#dashboard">Explorar dashboard</a><a class="btn" href="#documentos">Ver recursos</a></div>
-      </div>
-      <div class="heroCard fadeUp" aria-hidden="true">
-        <div class="dotline"><svg viewBox="0 0 600 300"><polyline points="20,205 80,160 132,172 190,116 250,132 312,72 376,103 430,66 485,88 565,42" fill="none" stroke="#d8f4ff" stroke-width="2" opacity=".85"/><g fill="#bdefff"><circle cx="80" cy="160" r="4"/><circle cx="190" cy="116" r="4"/><circle cx="312" cy="72" r="4"/><circle cx="430" cy="66" r="4"/><circle cx="565" cy="42" r="4"/></g></svg></div>
-        <svg class="wave" viewBox="0 0 660 180" preserveAspectRatio="none"><path d="M0 90 C 80 10, 170 180, 260 90 S 450 10, 660 90" fill="none" stroke="#68c6f4" stroke-width="8" opacity=".45"/><path d="M0 115 C 110 45, 170 150, 280 84 S 485 18, 660 70" fill="none" stroke="#b8edff" stroke-width="2" opacity=".85"/><path d="M0 80 C 130 145, 185 30, 310 92 S 500 140, 660 48" fill="none" stroke="#75d6ff" stroke-width="3" opacity=".65"/></svg>
-        <div class="barMesh"><span style="height:28px"></span><span style="height:38px"></span><span style="height:48px"></span><span style="height:55px"></span><span style="height:66px"></span><span style="height:82px"></span><span style="height:96px"></span><span style="height:110px"></span><span style="height:126px"></span><span style="height:138px"></span><span style="height:105px"></span><span style="height:88px"></span><span style="height:70px"></span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="resumen" class="section">
-    <div class="wrap">
-      <h2>Resumen ejecutivo</h2>
-      <div class="grid2">
-        <div class="card fadeUp">
-          <h3>Del dato crudo al insight de negocio</h3>
-          <p>El proyecto analiza 9.864 transacciones depuradas de una cadena de supermercados de Estados Unidos. La lectura inicial muestra un negocio de alto volumen, pero el análisis revela fugas de rentabilidad concentradas en descuentos agresivos, subcategorías deficitarias y la región Central.</p>
-          <div class="pillRow"><span class="pill good">Base limpia: 9.864 registros</span><span class="pill warn">Margen general: 12,44%</span><span class="pill bad">18,69% de operaciones con pérdida</span></div>
+  <main>
+    <section id="inicio" class="section hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">IFTS N°18 · TSCDIA · Ciclo 2026</span>
+          <h1>Proyecto Integrador<br><span>Supermarket Sales</span><br>2014–2017</h1>
+          <p>
+            Trabajo práctico final de la materia <strong>PPIV: Proyecto Integrador</strong>,
+            desarrollado para la carrera <strong>Técnico Superior en Ciencia de Datos e Inteligencia Artificial</strong>.
+            El proyecto transforma un dataset crudo de ventas en información accionable para la toma de decisiones.
+          </p>
+          <div class="meta-list">
+            <span>Profesor: Hugo Damián Planiscig</span>
+            <span>Herramientas: Python · Google Colab · Power BI</span>
+            <span>Instituto: <a href="https://www.ifts18.edu.ar/" target="_blank" rel="noreferrer">IFTS N°18</a></span>
+          </div>
+          <div class="cta">
+            <a class="btn primary" href="#dashboard">Explorar análisis</a>
+            <a class="btn" href="#archivos">Ver entregables</a>
+          </div>
         </div>
-        <div class="card insights fadeUp">
-          <h3>Insights clave</h3>
-          <ul>
-            <li><b>Furniture vende mucho</b>, pero aporta margen muy bajo frente a Technology y Office Supplies.</li>
-            <li><b>Tables y Bookcases</b> concentran la destrucción de valor dentro del mobiliario.</li>
-            <li><b>El descuento desde 30%</b> marca el quiebre hacia ganancias sistemáticamente negativas.</li>
-            <li><b>RFM detecta clientes accionables</b>: Champions, Loyal, At Risk, New Customers, Lost, Potential y Needs Attention.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="grid4" style="margin-top:22px">
-        <div class="card kpi fadeUp"><div class="label">Ventas totales</div><div class="value">US$ 2,27M</div><small>2014–2017</small></div>
-        <div class="card kpi fadeUp"><div class="label">Ganancia total</div><div class="value">US$ 282,6K</div><small>Beneficio acumulado</small></div>
-        <div class="card kpi fadeUp"><div class="label">Clientes únicos</div><div class="value">793</div><small>Cartera analizada</small></div>
-        <div class="card kpi fadeUp"><div class="label">Transacciones con pérdida</div><div class="value">1.844</div><small>18,69% del total</small></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="metodologia" class="method section">
-    <div class="wrap">
-      <h2>Metodología y preparación del dato</h2>
-      <p class="lead">El proceso siguió una lógica reproducible: comprensión del negocio, diagnóstico de calidad, limpieza, enriquecimiento y comunicación mediante dashboard. Se preservó el dataset crudo y se trabajó sobre copias controladas.</p>
-      <div class="pipeline">
-        <div class="step fadeUp" data-n="1"><b>Comprensión</b><span>Preguntas comerciales: qué se vende, dónde, a quién y con qué margen.</span></div>
-        <div class="step fadeUp" data-n="2"><b>Diagnóstico</b><span>Tipos incorrectos, valores corruptos, nulos y errores tipográficos.</span></div>
-        <div class="step fadeUp" data-n="3"><b>Limpieza</b><span>Conversiones, normalización categórica y tratamiento selectivo de nulos.</span></div>
-        <div class="step fadeUp" data-n="4"><b>EDA</b><span>Análisis por categoría, región, descuento, tiempo y logística.</span></div>
-        <div class="step fadeUp" data-n="5"><b>Comunicación</b><span>Visualizaciones interactivas y recomendaciones accionables.</span></div>
-      </div>
-      <div class="qualityGrid" style="margin-top:26px">
-        <div class="quality fadeUp"><b>449</b><p>Códigos postales recuperados con cero inicial usando tratamiento como identificador.</p></div>
-        <div class="quality fadeUp"><b>130</b><p>Filas eliminadas por faltantes críticos, apenas el 1,30% del dataset original.</p></div>
-        <div class="quality fadeUp"><b>27</b><p>Columnas finales: 21 originales más 6 variables derivadas para enriquecer el análisis.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="dashboard" class="dash section">
-    <div class="wrap">
-      <h2>Dashboard interactivo</h2>
-      <p class="lead">Los gráficos están reconstruidos como visualizaciones interactivas en HTML/SVG. Pasá el mouse por barras, puntos o segmentos para ver valores exactos y usá los botones para cambiar la métrica.</p>
-      <div class="dashboardShell">
-        <aside class="sidePanel fadeUp">
-          <h3>Secciones</h3>
-          <button class="filterBtn active" data-go="#ventas">Ventas y margen</button>
-          <button class="filterBtn" data-go="#productos">Productos críticos</button>
-          <button class="filterBtn" data-go="#region">Región y descuentos</button>
-          <button class="filterBtn" data-go="#temporal">Estacionalidad</button>
-          <button class="filterBtn" data-go="#rfm">RFM</button>
-        </aside>
-        <div>
-          <div id="ventas" class="dashGrid section">
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Ventas y ganancias por categoría</h3><p class="muted">Comparación del volumen comercial contra el beneficio neto.</p></div><div class="controls"><button class="miniBtn active" data-cat-mode="both">Ventas + Ganancia</button><button class="miniBtn" data-cat-mode="margin">Margen</button></div></div>
-              <div id="categoryChart" class="chart"></div><div class="legend" id="catLegend"></div>
+        <div class="hero-panel reveal">
+          <div class="hero-card">
+            <div class="mesh-line"></div>
+            <div class="hero-stats">
+              <div><b data-count="9994">0</b><span>filas crudas</span></div>
+              <div><b data-count="9864">0</b><span>filas limpias</span></div>
+              <div><b data-count="793">0</b><span>clientes</span></div>
             </div>
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Lectura comercial</h3><p class="muted">Technology y Office Supplies sostienen la rentabilidad, mientras Furniture mueve volumen con margen muy reducido.</p></div></div>
-              <div class="grid2" style="grid-template-columns:1fr 1fr;gap:12px">
-                <div class="kpi card"><div class="label">Technology</div><div class="value">17,2%</div><small>Margen efectivo aproximado</small></div>
-                <div class="kpi card"><div class="label">Furniture</div><div class="value badTxt">2,4%</div><small>Sub-performance de margen</small></div>
-                <div class="kpi card"><div class="label">Office Supplies</div><div class="value">17,0%</div><small>Alta eficiencia económica</small></div>
-                <div class="kpi card"><div class="label">Sin dato</div><div class="value">15,7%</div><small>Preservado para trazabilidad</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resumen" class="section">
+      <div class="wrap">
+        <h2>Resumen del trabajo práctico</h2>
+        <div class="grid two">
+          <article class="card reveal">
+            <h3>Del dato crudo al análisis de negocio</h3>
+            <p>
+              El trabajo parte de una base de ventas de supermercado con inconsistencias de calidad.
+              A partir de un proceso de limpieza, transformación y análisis exploratorio, se identificaron
+              patrones comerciales, problemas de rentabilidad y oportunidades de mejora.
+            </p>
+            <p>
+              La salida del proceso fue un dataset depurado y preparado para visualización, junto con
+              un tablero en Power BI y documentación técnica del proceso realizado.
+            </p>
+          </article>
+          <article class="card reveal">
+            <h3>Hallazgos principales</h3>
+            <ul class="clean-list">
+              <li>Furniture vende mucho, pero su margen efectivo es crítico.</li>
+              <li>Tables y Bookcases concentran pérdidas dentro de mobiliario.</li>
+              <li>Los descuentos desde 30% marcan una zona de pérdida sistemática.</li>
+              <li>Central es la región con menor margen relativo.</li>
+              <li>RFM permite diferenciar clientes a retener, reactivar o desarrollar.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="kpi-grid">
+          <article class="kpi reveal"><span>Ventas totales</span><b data-money="2271360.91">US$ 0</b><small>Período 2014–2017</small></article>
+          <article class="kpi reveal"><span>Ganancia total</span><b data-money="282578.15">US$ 0</b><small>Resultado acumulado</small></article>
+          <article class="kpi reveal"><span>Margen general</span><b data-percent="12.44">0%</b><small>Profit / Sales</small></article>
+          <article class="kpi reveal"><span>Clientes únicos</span><b data-count="793">0</b><small>Base RFM</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="consigna" class="section band">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Consigna académica</h2>
+          <p>
+            El objetivo de la materia fue desarrollar un trabajo funcional que explique, a alto nivel,
+            todos los pasos realizados y que entregue también los archivos fuente utilizados en el desarrollo.
+          </p>
+        </div>
+        <div class="grid two">
+          <article class="card reveal">
+            <h3>Contexto</h3>
+            <p>
+              El equipo asume el rol de analistas de datos de un negocio a elección. En este caso,
+              se seleccionó una cadena de supermercados de Estados Unidos con datos transaccionales
+              del período 2014–2017.
+            </p>
+            <p>
+              La finalidad es realizar un <strong>Análisis Exploratorio de Datos (EDA)</strong> que permita
+              entender qué se vende, dónde, a quién, con qué margen y bajo qué condiciones comerciales.
+            </p>
+          </article>
+          <article class="card reveal">
+            <h3>Objetivos de la consigna</h3>
+            <ul class="clean-list">
+              <li>Obtener un dataset no impecable para trabajar limpieza y preprocesamiento.</li>
+              <li>Calcular estadísticas descriptivas y analizarlas.</li>
+              <li>Visualizar patrones relevantes.</li>
+              <li>Extraer conclusiones e insights del análisis.</li>
+              <li>Presentar las conclusiones con el objetivo de potenciar el negocio.</li>
+              <li>Integrar Python con la herramienta de visualización asignada: Power BI.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodologia" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Metodología de trabajo</h2>
+          <p>
+            El proceso siguió una lógica progresiva: comprender el problema, diagnosticar el dato,
+            preparar la base, analizar patrones y comunicar resultados mediante visualizaciones.
+          </p>
+        </div>
+        <div class="pipeline">
+          <article class="step reveal" data-step="01">
+            <h3>Comprensión</h3>
+            <p>Lectura de la consigna y definición de preguntas de negocio.</p>
+          </article>
+          <article class="step reveal" data-step="02">
+            <h3>Diagnóstico</h3>
+            <p>Revisión de filas, columnas, tipos de dato, nulos y valores corruptos.</p>
+          </article>
+          <article class="step reveal" data-step="03">
+            <h3>Limpieza</h3>
+            <p>Conversión de tipos, normalización categórica y tratamiento de nulos.</p>
+          </article>
+          <article class="step reveal" data-step="04">
+            <h3>EDA</h3>
+            <p>Agregaciones por categoría, región, segmento, tiempo, descuentos y logística.</p>
+          </article>
+          <article class="step reveal" data-step="05">
+            <h3>Comunicación</h3>
+            <p>Dataset final, tablero Power BI, informe y sitio de presentación.</p>
+          </article>
+        </div>
+
+        <div class="grid three compact">
+          <article class="card metric reveal"><span>Filas crudas</span><b>9.994</b><p>Base original recibida.</p></article>
+          <article class="card metric reveal"><span>Filas depuradas</span><b>9.864</b><p>Luego de eliminar campos críticos inválidos.</p></article>
+          <article class="card metric reveal"><span>Variables finales</span><b>27</b><p>21 originales + 6 derivadas para análisis.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section band">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Análisis exploratorio y visualizaciones</h2>
+          <p>
+            Los gráficos permiten recorrer los principales hallazgos del proyecto: rentabilidad por categoría,
+            subcategorías críticas, desempeño regional, efecto de descuentos y evolución temporal.
+          </p>
+        </div>
+
+        <div class="chart-toolbar reveal">
+          <button class="chip active" data-target="#categoria">Categoría</button>
+          <button class="chip" data-target="#subcategoria">Subcategoría</button>
+          <button class="chip" data-target="#region">Región</button>
+          <button class="chip" data-target="#descuentos">Descuentos</button>
+          <button class="chip" data-target="#temporal">Temporal</button>
+        </div>
+
+        <div id="categoria" class="chart-group">
+          <article class="chart-card reveal">
+            <div class="chart-head">
+              <div>
+                <h3>Ventas y ganancia por categoría</h3>
+                <p>El volumen de ventas no siempre coincide con la rentabilidad real.</p>
               </div>
-              <p class="caption">La conclusión no es “vender más”, sino vender con mejor margen y controlar líneas deficitarias.</p>
+              <button class="chart-open" data-chart="categoryChart">Ampliar</button>
             </div>
-          </div>
-          <div id="productos" class="dashGrid section" style="margin-top:22px">
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Top 10 subcategorías por ventas</h3><p class="muted">El volumen no siempre coincide con la rentabilidad.</p></div></div>
-              <div id="subSalesChart" class="chart"></div>
+            <div id="categoryChart" class="chart"></div>
+            <div id="categoryLegend" class="legend"></div>
+          </article>
+          <article class="insight-card reveal">
+            <h3>Lectura de negocio</h3>
+            <p>
+              Technology y Office Supplies sostienen el resultado económico. Furniture, aunque factura a
+              un nivel similar, deja un margen considerablemente menor, lo que exige revisar precios,
+              descuentos y costos asociados.
+            </p>
+          </article>
+        </div>
+
+        <div id="subcategoria" class="chart-group split">
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Top 10 subcategorías por ventas</h3><p>Ranking de facturación por línea de producto.</p></div><button class="chart-open" data-chart="subSalesChart">Ampliar</button></div>
+            <div id="subSalesChart" class="chart"></div>
+          </article>
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Ganancia por subcategoría</h3><p>Permite detectar creación y destrucción de valor.</p></div><button class="chart-open" data-chart="subProfitChart">Ampliar</button></div>
+            <div id="subProfitChart" class="chart"></div>
+          </article>
+        </div>
+
+        <div id="region" class="chart-group split">
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Ventas por región</h3><p>West lidera el volumen y Central muestra bajo margen relativo.</p></div><button class="chart-open" data-chart="regionChart">Ampliar</button></div>
+            <div id="regionChart" class="chart"></div>
+            <div id="regionLegend" class="legend"></div>
+          </article>
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Ventas por segmento</h3><p>Consumer concentra el volumen; Home Office tiene mayor ticket por línea.</p></div><button class="chart-open" data-chart="segmentChart">Ampliar</button></div>
+            <div id="segmentChart" class="chart"></div>
+          </article>
+        </div>
+
+        <div id="descuentos" class="chart-group">
+          <article class="chart-card reveal">
+            <div class="chart-head">
+              <div>
+                <h3>Impacto de los descuentos en la rentabilidad</h3>
+                <p>A partir del 30% de descuento la ganancia acumulada pasa a zona negativa.</p>
+              </div>
+              <div class="mini-controls">
+                <button class="mini active" data-discount-mode="profit">Ganancia</button>
+                <button class="mini" data-discount-mode="sales">Ventas</button>
+                <button class="mini" data-discount-mode="operations">Operaciones</button>
+              </div>
+              <button class="chart-open" data-chart="discountChart">Ampliar</button>
             </div>
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Ganancia por subcategoría</h3><p class="muted">Se destacan los destructores y generadores de valor.</p></div></div>
-              <div id="subProfitChart" class="chart"></div>
-            </div>
-          </div>
-          <div id="region" class="dashGrid section" style="margin-top:22px">
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Desempeño regional</h3><p class="muted">West lidera el volumen; Central evidencia bajo margen.</p></div></div>
-              <div id="regionChart" class="chart"></div><div class="legend" id="regionLegend"></div>
-            </div>
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Descuento vs rentabilidad</h3><p class="muted">Desde 30% el beneficio acumulado pasa a negativo.</p></div><div class="controls"><button class="miniBtn active" data-discount-mode="profit">Ganancia</button><button class="miniBtn" data-discount-mode="sales">Ventas</button><button class="miniBtn" data-discount-mode="ops">Operaciones</button></div></div>
-              <div id="discountChart" class="chart"></div>
-            </div>
-          </div>
-          <div id="temporal" class="dashGrid section" style="margin-top:22px">
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Evolución anual de ventas</h3><p class="muted">Tendencia creciente del negocio, con valores expresados en millones.</p></div></div>
-              <div id="annualChart" class="chart"></div>
-            </div>
-            <div class="card chartCard fadeUp">
-              <div class="chartHead"><div><h3>Estacionalidad: picos y valles</h3><p class="muted">Referencias clave del informe: Q4 concentra máximos; enero/febrero, mínimos.</p></div></div>
-              <div id="seasonChart" class="chart"></div><p class="caption">Valores en miles de USD; los puntos ~80K y ~95K son aproximados según el informe.</p>
-            </div>
-          </div>
+            <div id="discountChart" class="chart"></div>
+          </article>
+        </div>
+
+        <div id="temporal" class="chart-group split">
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Evolución anual</h3><p>Ventas y ganancias agregadas por año.</p></div><button class="chart-open" data-chart="annualChart">Ampliar</button></div>
+            <div id="annualChart" class="chart"></div>
+          </article>
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Evolución mensual</h3><p>Serie temporal completa con picos de fin de año.</p></div><button class="chart-open" data-chart="monthlyChart">Ampliar</button></div>
+            <div id="monthlyChart" class="chart"></div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="rfm" class="section">
-    <div class="wrap">
-      <h2>Análisis RFM y segmentación de clientes</h2>
-      <p class="lead">El modelo RFM clasifica a los clientes según recencia, frecuencia y valor monetario. La cartera queda dividida en siete segmentos accionables, cada uno con una estrategia comercial distinta.</p>
-      <div class="grid4" style="margin-top:22px">
-        <div class="card kpi fadeUp"><div class="label">Clientes analizados</div><div class="value">793</div><small>Base RFM</small></div>
-        <div class="card kpi fadeUp"><div class="label">Champions + Loyal</div><div class="value">198</div><small>37,9% del revenue</small></div>
-        <div class="card kpi fadeUp"><div class="label">At Risk</div><div class="value warnTxt">64</div><small>US$ 323K históricos</small></div>
-        <div class="card kpi fadeUp"><div class="label">Lost</div><div class="value badTxt">201</div><small>355 días promedio sin comprar</small></div>
-      </div>
-      <div class="dashGrid" style="margin-top:22px">
-        <div class="card chartCard fadeUp"><div class="chartHead"><div><h3>Clientes vs revenue por segmento</h3><p class="muted">Doble dona comparativa.</p></div></div><div id="rfmDonuts" class="chart"></div></div>
-        <div class="card chartCard fadeUp"><div class="chartHead"><div><h3>Revenue histórico por segmento</h3><p class="muted">Ranking económico de la cartera.</p></div></div><div id="rfmRevenue" class="chart"></div></div>
-        <div class="card chartCard fadeUp"><div class="chartHead"><div><h3>Mapa RFM: recencia vs frecuencia</h3><p class="muted">El tamaño de burbuja representa el revenue histórico.</p></div></div><div id="rfmScatter" class="chart"></div></div>
-        <div class="card fadeUp tableWrap"><h3>Plan de acción por segmento</h3><table class="dataTable" id="rfmTable"></table></div>
-      </div>
-    </div>
-  </section>
+    <section id="rfm" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Segmentación RFM</h2>
+          <p>
+            La segmentación RFM clasifica la cartera según recencia, frecuencia y valor monetario,
+            permitiendo diseñar acciones diferenciadas para cada grupo de clientes.
+          </p>
+        </div>
 
-  <section id="hallazgos" class="findings section">
-    <div class="wrap">
-      <h2>Conclusiones y recomendaciones</h2>
-      <div class="findingGrid">
-        <div class="card finding fadeUp"><div class="icon">🛒</div><h3>Producto</h3><p>Revisar Tables y Bookcases: renegociar costos, ajustar precios o retirar referencias no rentables.</p></div>
-        <div class="card finding fadeUp"><div class="icon">🏷️</div><h3>Pricing</h3><p>Formalizar un techo de descuento del 25%. Cualquier descuento superior debería requerir autorización.</p></div>
-        <div class="card finding fadeUp"><div class="icon">🗺️</div><h3>Región Central</h3><p>Auditar mix de productos, descuentos locales y costos operativos para explicar su margen del 8%.</p></div>
-        <div class="card finding fadeUp"><div class="icon">👥</div><h3>Clientes</h3><p>Fidelizar Champions y Loyal; reactivar At Risk antes de que migren a Lost.</p></div>
-        <div class="card finding fadeUp"><div class="icon">📦</div><h3>Estacionalidad</h3><p>Planificar stock, logística y personal para picos predecibles de noviembre y diciembre.</p></div>
-        <div class="card finding fadeUp"><div class="icon">🤖</div><h3>Próximo paso</h3><p>Automatizar el pipeline e incorporar modelos predictivos para ventas, rentabilidad y churn.</p></div>
-      </div>
-    </div>
-  </section>
+        <div class="kpi-grid">
+          <article class="kpi reveal"><span>Clientes analizados</span><b data-count="793">0</b><small>Base RFM</small></article>
+          <article class="kpi reveal"><span>Champions + Loyal</span><b data-count="198">0</b><small>Núcleo de mayor valor</small></article>
+          <article class="kpi reveal"><span>At Risk</span><b data-count="64">0</b><small>Reactivación prioritaria</small></article>
+          <article class="kpi reveal"><span>Lost</span><b data-count="201">0</b><small>Clientes inactivos</small></article>
+        </div>
 
-  <section id="documentos" class="docs section">
-    <div class="wrap">
-      <h2>Documentación y Recursos</h2>
-      <div class="docGrid">
-        <div class="card docCard fadeUp"><div class="docIcon">📄</div><div><h3>Informe Completo</h3><p class="muted">Documento técnico completo con metodología, análisis y conclusiones detalladas.</p><a href="docs/informe-final.pdf" target="_blank">Descargar PDF →</a></div></div>
-        <div class="card docCard fadeUp"><div class="docIcon">🎬</div><div><h3>Presentación</h3><p class="muted">Presentación ejecutiva con highlights del proyecto, insights clave y recomendaciones.</p><a href="docs/presentacion-animada.pptx" target="_blank">Descargar PPTX →</a></div></div>
-        <div class="card docCard fadeUp"><div class="docIcon">💻</div><div><h3>Código y Notebooks</h3><p class="muted">Notebook con código reproducible de análisis, limpieza de datos y visualizaciones.</p><a href="docs/notebook-colab.pdf" target="_blank">Acceder a notebook →</a></div></div>
-        <div class="card docCard fadeUp"><div class="docIcon">📊</div><div><h3>Dataset</h3><p class="muted">Datos de ventas originales en formato CSV/Excel con diccionario de variables.</p><a href="#dashboard">Ver datos analizados →</a></div></div>
-        <div class="card docCard fadeUp"><div class="docIcon">📋</div><div><h3>Documentación Técnica</h3><p class="muted">Guía técnica con explicación de variables, transformaciones y métricas calculadas.</p><a href="docs/guion-exposicion.pdf" target="_blank">Ver documentación →</a></div></div>
-        <div class="card docCard fadeUp"><div class="docIcon">🔗</div><div><h3>Dashboard Power BI</h3><p class="muted">Acceso al dashboard interactivo con análisis exploratorio y visualizaciones dinámicas.</p><a href="#dashboard">Abrir dashboard →</a></div></div>
+        <div class="chart-group split">
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Distribución RFM</h3><p>Comparación entre participación de clientes y participación de revenue.</p></div><button class="chart-open" data-chart="rfmDonuts">Ampliar</button></div>
+            <div id="rfmDonuts" class="chart chart-square"></div>
+          </article>
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Revenue histórico por segmento</h3><p>Ranking económico de la cartera.</p></div><button class="chart-open" data-chart="rfmRevenue">Ampliar</button></div>
+            <div id="rfmRevenue" class="chart"></div>
+          </article>
+          <article class="chart-card reveal">
+            <div class="chart-head"><div><h3>Mapa RFM</h3><p>Recencia, frecuencia y valor monetario en una misma vista.</p></div><button class="chart-open" data-chart="rfmScatter">Ampliar</button></div>
+            <div id="rfmScatter" class="chart"></div>
+          </article>
+          <article class="card reveal table-card">
+            <h3>Plan de acción por segmento</h3>
+            <div class="table-wrap">
+              <table id="rfmTable"></table>
+            </div>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="equipo" class="section">
-    <div class="wrap">
-      <h2>Equipo</h2>
-      <div class="teamGrid">
-        <div class="card member fadeUp"><div class="avatar">GD</div><b>Gabriel D'Annunzio</b></div>
-        <div class="card member fadeUp"><div class="avatar">JE</div><b>Juan Manuel Etchehun</b></div>
-        <div class="card member fadeUp"><div class="avatar">PT</div><b>Pablo Tapia</b></div>
-        <div class="card member fadeUp"><div class="avatar">PN</div><b>Pablo Donato Nuñez</b></div>
+    <section id="conclusiones" class="section band">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Conclusiones y recomendaciones</h2>
+          <p>
+            El proyecto permite pasar de una lectura basada únicamente en volumen a una lectura centrada
+            en margen, eficiencia y valor de cliente.
+          </p>
+        </div>
+        <div class="grid three">
+          <article class="finding reveal"><span>01</span><h3>Producto</h3><p>Revisar Tables y Bookcases, ya que concentran pérdidas dentro de Furniture.</p></article>
+          <article class="finding reveal"><span>02</span><h3>Pricing</h3><p>Establecer control gerencial para descuentos superiores al 25%.</p></article>
+          <article class="finding reveal"><span>03</span><h3>Región Central</h3><p>Auditar mix de productos, descuentos locales y posibles costos diferenciales.</p></article>
+          <article class="finding reveal"><span>04</span><h3>Clientes</h3><p>Proteger Champions y Loyal, y activar campañas específicas para At Risk.</p></article>
+          <article class="finding reveal"><span>05</span><h3>Estacionalidad</h3><p>Planificar stock y logística antes de los picos de noviembre y diciembre.</p></article>
+          <article class="finding reveal"><span>06</span><h3>Próximos pasos</h3><p>Automatizar el pipeline e incorporar modelos predictivos para ventas y churn.</p></article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contacto" class="contact section">
-    <div class="wrap">
-      <h2>Contacto</h2>
-      <p class="lead">Proyecto académico de la Tecnicatura Superior en Ciencia de Datos e Inteligencia Artificial · IFTS N°18 · Ciclo lectivo 2026.</p>
-      <div class="grid3" style="margin-top:28px"><div class="card member fadeUp"><div class="icon" style="margin:auto auto 14px">🏫</div><h3>Instituto</h3><p class="muted">IFTS N°18</p></div><div class="card member fadeUp"><div class="icon" style="margin:auto auto 14px">📊</div><h3>Proyecto</h3><p class="muted">Supermarket Sales 2014–2017</p></div><div class="card member fadeUp"><div class="icon" style="margin:auto auto 14px">🧭</div><h3>Enfoque</h3><p class="muted">EDA · Power BI · RFM</p></div></div>
-    </div>
-  </section>
-
-  <footer class="siteFooter">
-    <div class="footerInner">
-      <div class="footerGrid">
-        <div><h3 class="footerBrand">Proyecto Integrador</h3><p class="footerText">IFTS N°18 - Supermarket Sales 2014-2017</p></div>
-        <div><h4 class="footerTitle">Secciones</h4><a class="footerLink" href="#inicio">Inicio</a><a class="footerLink" href="#metodologia">Metodología</a><a class="footerLink" href="#hallazgos">Hallazgos</a><a class="footerLink" href="#rfm">Segmentación RFM</a></div>
-        <div><h4 class="footerTitle">Recursos</h4><a class="footerLink" href="#documentos">Documentos</a><a class="footerLink" href="#equipo">Equipo</a><a class="footerLink" href="#contacto">Contacto</a></div>
-        <div><h4 class="footerTitle">Instituto</h4><p class="footerText">Instituto de Formación Técnica Superior N°18<br>Proyecto Integrador de Ciencia de Datos<br>© 2026</p></div>
+    <section id="archivos" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Archivos y entregables</h2>
+          <p>
+            Se incluyen los archivos fuente y entregables del trabajo práctico: informe, dataset, notebook,
+            tablero Power BI y consigna de la materia.
+          </p>
+        </div>
+        <div class="file-grid">
+          <article class="file-card reveal"><div class="file-icon">📄</div><div><h3>Informe final</h3><p>Documento técnico con metodología, análisis, resultados y recomendaciones.</p><a href="docs/informe-final-supermarket-sales.pdf" target="_blank">Abrir PDF →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon">💻</div><div><h3>Notebook Colab</h3><p>Código fuente del proceso de limpieza, transformación, EDA y RFM.</p><a href="notebooks/notebook-proyecto-integrador.ipynb" target="_blank">Descargar notebook →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon">📊</div><div><h3>Dashboard Power BI</h3><p>Archivo PBIX utilizado para la visualización final del trabajo.</p><a href="powerbi/dashboard-powerbi.pbix" target="_blank">Descargar PBIX →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon">🧾</div><div><h3>Dataset crudo</h3><p>Archivo original recibido para limpieza y análisis exploratorio.</p><a href="data/df_sales_crudo.csv" target="_blank">Descargar CSV →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon">✅</div><div><h3>Dataset limpio</h3><p>Base depurada y enriquecida con variables derivadas para análisis.</p><a href="data/df_sales_limpio_para_powerbi.csv" target="_blank">Descargar CSV limpio →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon">📚</div><div><h3>Consigna</h3><p>Detalle de contexto, objetivos, entregables y comentarios de la materia.</p><a href="docs/consigna-ppiv-proyecto-integrador.md" target="_blank">Ver consigna →</a></div></article>
+        </div>
       </div>
-      <div class="footerBottom"><span>Proyecto de Ciencia de Datos | 2014-2017</span><span>Supermarket Sales · EDA · RFM · Dashboard interactivo</span></div>
+    </section>
+
+    <section id="equipo" class="section band">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Equipo e institución</h2>
+          <p>Trabajo práctico final de PPIV: Proyecto Integrador.</p>
+        </div>
+        <div class="grid two">
+          <article class="card reveal">
+            <h3>Integrantes</h3>
+            <div class="team-list">
+              <span>Gabriel D'Annunzio</span>
+              <span>Juan Manuel Etchehun</span>
+              <span>Pablo Tapia</span>
+              <span>Pablo Donato Nuñez</span>
+            </div>
+          </article>
+          <article class="card reveal">
+            <h3>Datos académicos</h3>
+            <p><strong>Instituto:</strong> Instituto de Formación Técnica Superior N°18</p>
+            <p><strong>Carrera:</strong> Técnico Superior en Ciencia de Datos e Inteligencia Artificial (TSCDIA)</p>
+            <p><strong>Materia:</strong> PPIV: Proyecto Integrador</p>
+            <p><strong>Profesor:</strong> Hugo Damián Planiscig</p>
+            <p><a href="https://www.ifts18.edu.ar/" target="_blank" rel="noreferrer">www.ifts18.edu.ar</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <h3>PPIV: Proyecto Integrador</h3>
+        <p>Supermarket Sales 2014–2017 · IFTS N°18 · TSCDIA</p>
+      </div>
+      <div>
+        <h4>Secciones</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#consigna">Consigna</a>
+        <a href="#dashboard">Análisis</a>
+        <a href="#archivos">Archivos</a>
+      </div>
+      <div>
+        <h4>Entregables</h4>
+        <a href="docs/informe-final-supermarket-sales.pdf">Informe final</a>
+        <a href="notebooks/notebook-proyecto-integrador.ipynb">Notebook</a>
+        <a href="powerbi/dashboard-powerbi.pbix">Power BI</a>
+      </div>
+      <div>
+        <h4>Instituto</h4>
+        <p>Instituto de Formación Técnica Superior N°18<br>Proyecto académico · 2026</p>
+      </div>
     </div>
   </footer>
-  <div id="chartModal" class="modalOverlay" aria-hidden="true"><div class="modalBox" role="dialog" aria-modal="true"><div class="modalHeader"><div><h3 id="modalTitle">Gráfico ampliado</h3><p id="modalDesc">Interactuá con el gráfico para ver referencias y valores.</p></div><div class="modalActions"><button class="modalBtn" id="zoomOut">−</button><button class="modalBtn" id="zoomReset">100%</button><button class="modalBtn" id="zoomIn">+</button><button class="modalBtn" id="closeModal">Cerrar</button></div></div><div class="modalBody"><div id="modalChart" class="modalChart"></div></div><div class="modalFooter"><span>Tip: pasá el cursor sobre barras, puntos, burbujas o porciones para ver referencias y valores.</span><span>Proyecto Integrador · Supermarket Sales</span></div></div></div>
+
+  <div id="chartModal" class="modal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div>
+          <h3 id="modalTitle">Gráfico ampliado</h3>
+          <p id="modalDescription">Pasá el mouse sobre los elementos para ver el detalle.</p>
+        </div>
+        <div class="modal-actions">
+          <button id="zoomOut" type="button">−</button>
+          <button id="zoomValue" type="button">100%</button>
+          <button id="zoomIn" type="button">+</button>
+          <button id="closeModal" type="button">Cerrar</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="modalChart" class="modal-chart"></div>
+      </div>
+    </div>
+  </div>
+
   <div id="tooltip" class="tooltip"></div>
 
-<script>
-const BLUE='#0a4a8f', BLUE2='#0d65b7', GREEN='#1f9d67', RED='#d64545', AMBER='#f2a93b', VIOLET='#6a5acd', GRAY='#7f8a9a', CYAN='#4db6e7';
-const fmtMoney=v=>Math.abs(v)>=1000000?'US$ '+(v/1000000).toFixed(2)+'M':Math.abs(v)>=1000?'US$ '+(v/1000).toFixed(1)+'K':'US$ '+v.toFixed(0);
-const fmtNum=v=>new Intl.NumberFormat('es-AR').format(v);
-const fmtPct=v=>v.toFixed(1).replace('.',',')+'%';
-const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
-const tooltip=$('#tooltip');
-function showTip(e, html){tooltip.innerHTML=html; tooltip.style.opacity=1; moveTip(e)}
-function moveTip(e){tooltip.style.left=e.clientX+'px'; tooltip.style.top=(e.clientY-12)+'px'}
-function hideTip(){tooltip.style.opacity=0}
-function svg(container, w=760, h=320, keepAspect=false){container.innerHTML=''; const s=document.createElementNS('http://www.w3.org/2000/svg','svg'); s.setAttribute('viewBox',`0 0 ${w} ${h}`); s.setAttribute('preserveAspectRatio',keepAspect?'xMidYMid meet':'none'); container.appendChild(s); return s}
-function el(name, attrs={}, text=''){const n=document.createElementNS('http://www.w3.org/2000/svg',name); for(const k in attrs)n.setAttribute(k,attrs[k]); if(text)n.textContent=text; return n}
-function bindTipNode(node){
-  const tip=node.getAttribute('data-tip')||node.dataset.tip;
-  if(!tip || node.dataset.boundTip==='1') return;
-  node.dataset.boundTip='1';
-  node.addEventListener('mouseenter',e=>showTip(e,tip));
-  node.addEventListener('mousemove',moveTip);
-  node.addEventListener('mouseleave',hideTip);
-}
-function addTip(node, html){
-  node.setAttribute('data-tip', html.replace(/"/g,'&quot;'));
-  node.dataset.tip=html;
-  bindTipNode(node);
-}
-function scaleLabel(v, unit='money'){
-  if(unit==='pct') return (Math.round(v*10)/10).toLocaleString('es-AR')+'%';
-  if(unit==='plain') return Math.round(v).toLocaleString('es-AR');
-  if(unit==='k') return Math.round(v)+'K';
-  if(Math.abs(v)>=1000000) return (v/1000000).toFixed(1)+'M';
-  if(Math.abs(v)>=1000) return Math.round(v/1000)+'K';
-  return Math.round(v).toLocaleString('es-AR');
-}
-function gridLines(s,w,h,m,yTicks,max,min=0,unit='money'){
-  const span=(max-min)||1;
-  for(let i=0;i<=yTicks;i++){
-    const val=max-(span*i/yTicks);
-    const y=m.t+(h-m.t-m.b)*i/yTicks;
-    s.appendChild(el('line',{x1:m.l,x2:w-m.r,y1:y,y2:y,class:'tickLine'}));
-    s.appendChild(el('text',{x:m.l-8,y:y+4,'text-anchor':'end',class:'scaleText'},scaleLabel(val,unit)));
-  }
-}
-function xScaleLines(s,w,h,m,ticks,min,max,unit='money'){
-  const span=(max-min)||1;
-  for(let i=0;i<=ticks;i++){
-    const val=min+(span*i/ticks);
-    const x=m.l+(w-m.l-m.r)*i/ticks;
-    s.appendChild(el('line',{x1:x,x2:x,y1:m.t,y2:h-m.b,class:'tickLine'}));
-    s.appendChild(el('text',{x:x,y:h-m.b+18,'text-anchor':'middle',class:'scaleText'},scaleLabel(val,unit)));
-  }
-}
-const data={
- categories:[
-  {name:'Technology',sales:803592.53,profit:137998.24,units:6704,orders:1505},{name:'Furniture',sales:716409.05,profit:17390.65,units:7790,orders:1723},{name:'Office Supplies',sales:702314.73,profit:119472.92,units:22222,orders:3658},{name:'Sin dato',sales:49044.60,profit:7716.34,units:698,orders:190}
- ],
- subTop:[
-  ['Chairs',320516.23,25959.75,2281],['Phones',315661.39,42994.60,3113],['Storage',216019.57,20555.22,3068],['Tables',198714.75,-17424.50,1193],['Binders',189767.68,25063.23,5735],['Machines',180628.00,1927.46,428],['Accessories',163302.27,41036.62,2873],['Copiers',148528.03,55167.89,232],['Bookcases',112166.77,-3593.11,851],['Appliances',104938.75,18144.05,1682]
- ],
- subProfit:[
-  ['Copiers',55167.89],['Phones',42994.60],['Accessories',41036.62],['Chairs',25959.75],['Binders',25063.23],['Storage',20555.22],['Appliances',18144.05],['Furnishings',12906.75],['Art',6343.15],['Supplies',-988.35],['Bookcases',-3593.11],['Tables',-17424.50]
- ],
- regions:[['West',708155.64,105680.90,1580,14.9],['East',647812.03,87425.51,1367,13.5],['Central',490819.51,39095.07,1153,8.0],['South',382350.88,45693.26,814,11.9],['Sin dato',42222.85,4683.41,199,11.1]],
- discounts:[
-  [0,1072166.53,316342.43,4737],[0.10,53511.06,8886.17,93],[0.15,26754.53,1437.89,50],[0.20,760509.45,89586.74,3612],[0.30,102867.39,-10303.41,224],[0.32,14493.45,-2391.16,27],[0.40,113022.95,-22206.69,200],[0.45,5484.98,-2493.12,11],[0.50,58918.53,-20506.49,66],[0.60,6636.92,-5942.49,137],[0.70,40068.52,-39350.92,411],[0.80,16926.60,-30480.80,296]
- ],
- annual:[['2014',0.48],['2015',0.47],['2016',0.60],['2017',0.73]],
- season:[['Feb 2014',5],['Nov 2014',80],['Nov 2016',95],['Nov 2017',118],['Dic 2017',96]],
- rfm:[
-  {seg:'Champions',clients:103,pc:13.0,pr:23.8,rec:24,freq:9.3,ticket:5241,rev:539832,action:'Fidelizar'},
-  {seg:'Loyal',clients:95,pc:12.0,pr:14.1,rec:56,freq:8.6,ticket:3376,rev:320757,action:'Upsell'},
-  {seg:'At Risk',clients:64,pc:8.1,pr:14.2,rec:208,freq:8.7,ticket:5049,rev:323158,action:'Reactivar urgente'},
-  {seg:'Needs Attention',clients:55,pc:6.9,pr:9.0,rec:190,freq:6.1,ticket:3724,rev:204793,action:'Ofertas personalizadas'},
-  {seg:'New Customers',clients:151,pc:19.0,pr:15.9,rec:26,freq:5.0,ticket:2387,rev:360500,action:'Onboarding'},
-  {seg:'Lost',clients:201,pc:25.3,pr:13.2,rec:355,freq:4.0,ticket:1489,rev:299295,action:'Win-back o baja'},
-  {seg:'Potential',clients:124,pc:15.6,pr:9.8,rec:83,freq:6.0,ticket:1799,rev:223026,action:'2a compra'}
- ]
-};
-function drawGroupedCategory(mode='both'){
- const c=$('#categoryChart'), s=svg(c,760,320), w=760,h=320,m={l:82,r:28,t:28,b:66};
- if(mode==='margin'){
-   const vals=data.categories.map(d=>({name:d.name,val:d.profit/d.sales*100,raw:d}));
-   const max=Math.max(...vals.map(d=>d.val))*1.25;
-   gridLines(s,w,h,m,4,max,0,'pct');
-   const bw=(w-m.l-m.r)/vals.length*.55;
-   vals.forEach((d,i)=>{const x=m.l+(i+.5)*(w-m.l-m.r)/vals.length-bw/2; const bh=(h-m.t-m.b)*d.val/max; const y=h-m.b-bh; const r=el('rect',{x,y,width:bw,height:bh,rx:8,fill:d.val<5?RED:GREEN,class:'bar'}); addTip(r,`<b>${d.name}</b><br>Margen: ${fmtPct(d.val)}<br>Ventas: ${fmtMoney(d.raw.sales)}<br>Ganancia: ${fmtMoney(d.raw.profit)}`); s.appendChild(r); s.appendChild(el('text',{x:x+bw/2,y:y-8,'text-anchor':'middle',class:'labelText'},fmtPct(d.val))); s.appendChild(el('text',{x:x+bw/2,y:h-m.b+34,'text-anchor':'middle',class:'labelText'},d.name.replace('Office Supplies','Office')));});
-   $('#catLegend').innerHTML='<span class="leg"><span class="sw" style="background:'+GREEN+'"></span>Margen saludable</span><span class="leg"><span class="sw" style="background:'+RED+'"></span>Margen crítico</span>';
- }else{
-   const max=Math.max(...data.categories.flatMap(d=>[d.sales,d.profit]))*1.12;
-   gridLines(s,w,h,m,4,max,0,'money');
-   const groupW=(w-m.l-m.r)/data.categories.length; const bw=groupW*.24;
-   data.categories.forEach((d,i)=>{const cx=m.l+i*groupW+groupW*.5; [['sales',BLUE,'Ventas'],['profit',CYAN,'Ganancia']].forEach((k,j)=>{const val=d[k[0]], bh=(h-m.t-m.b)*val/max, x=cx+(j-.5)*bw*1.25-bw/2,y=h-m.b-bh; const r=el('rect',{x,y,width:bw,height:bh,rx:7,fill:k[1],class:'bar'}); addTip(r,`<b>${d.name}</b><br>${k[2]}: ${fmtMoney(val)}<br>Unidades: ${fmtNum(d.units)}<br>Órdenes: ${fmtNum(d.orders)}`); s.appendChild(r);}); s.appendChild(el('text',{x:cx,y:h-m.b+34,'text-anchor':'middle',class:'labelText'},d.name.replace('Office Supplies','Office')));});
-   $('#catLegend').innerHTML='<span class="leg"><span class="sw" style="background:'+BLUE+'"></span>Ventas</span><span class="leg"><span class="sw" style="background:'+CYAN+'"></span>Ganancia</span>';
- }
- s.appendChild(el('line',{x1:m.l,x2:w-m.r,y1:h-m.b,y2:h-m.b,class:'zeroLine'}));
- s.appendChild(el('text',{x:12,y:18,class:'axisLabel'},mode==='margin'?'Escala: margen %':'Escala: USD'));
-}
-function drawHorizontal(id, rows, valueIndex, options={}){
- const c=$(id), s=svg(c,760,320), w=760,h=320,m={l:118,r:62,t:24,b:48}; const vals=rows.map(r=>r[valueIndex]); const min=Math.min(0,...vals), max=Math.max(0,...vals); const span=max-min || 1; const plotW=w-m.l-m.r; const zero=m.l+(0-min)/span*plotW;
- xScaleLines(s,w,h,m,4,min,max,options.money===false?'plain':'money');
- s.appendChild(el('line',{x1:zero,x2:zero,y1:m.t,y2:h-m.b,class:'zeroLine'}));
- rows.forEach((r,i)=>{const y=m.t+i*(h-m.t-m.b)/rows.length+6; const barH=(h-m.t-m.b)/rows.length*.58; const val=r[valueIndex]; const x=val>=0?zero:zero+(val/span*plotW); const bw=Math.max(1,Math.abs(val)/span*plotW); const color=val<0?RED:(options.color||BLUE); const rect=el('rect',{x,y,width:bw,height:barH,rx:6,fill:color,class:'bar',opacity:.92}); addTip(rect,`<b>${r[0]}</b><br>${options.label||'Valor'}: ${options.money===false?fmtNum(val):fmtMoney(val)}${r[2]!==undefined?'<br>Ventas: '+fmtMoney(r[2]):''}${r[3]!==undefined?'<br>Ganancia: '+fmtMoney(r[3]):''}${r[4]!==undefined?'<br>Operaciones: '+fmtNum(r[4]):''}`); s.appendChild(rect); s.appendChild(el('text',{x:8,y:y+barH*.68,class:'labelText'},r[0])); s.appendChild(el('text',{x:val>=0?x+bw+6:x-6,y:y+barH*.68,'text-anchor':val>=0?'start':'end',class:'labelText'},options.money===false?fmtNum(val):fmtMoney(val))); });
- s.appendChild(el('text',{x:w/2,y:h-8,'text-anchor':'middle',class:'axisLabel'},options.money===false?'Escala: cantidad':'Escala: USD'));
-}
-function drawRegion(){
- const c=$('#regionChart'), s=svg(c,760,320), w=760,h=320,m={l:82,r:60,t:28,b:66}; const max=Math.max(...data.regions.map(d=>d[1]))*1.15; gridLines(s,w,h,m,4,max,0,'money'); const group=(w-m.l-m.r)/data.regions.length; const bw=group*.42;
- data.regions.forEach((d,i)=>{const x=m.l+i*group+group*.5-bw/2; const bh=(h-m.t-m.b)*d[1]/max; const y=h-m.b-bh; const color=d[0]==='Central'?AMBER:BLUE; const r=el('rect',{x,y,width:bw,height:bh,rx:8,fill:color,class:'bar'}); addTip(r,`<b>${d[0]}</b><br>Ventas: ${fmtMoney(d[1])}<br>Ganancia: ${fmtMoney(d[2])}<br>Margen: ${fmtPct(d[4])}<br>Órdenes: ${fmtNum(d[3])}`); s.appendChild(r); const p=el('circle',{cx:x+bw/2,cy:y-18,r:Math.max(5,d[4]*.7),fill:d[4]<9?RED:GREEN,opacity:.88,class:'point'}); addTip(p,`<b>${d[0]}</b><br>Margen efectivo: ${fmtPct(d[4])}`); s.appendChild(p); s.appendChild(el('text',{x:x+bw/2,y:h-m.b+34,'text-anchor':'middle',class:'labelText'},d[0]));});
- s.appendChild(el('line',{x1:m.l,x2:w-m.r,y1:h-m.b,y2:h-m.b,class:'zeroLine'})); $('#regionLegend').innerHTML='<span class="leg"><span class="sw" style="background:'+BLUE+'"></span>Ventas</span><span class="leg"><span class="sw" style="background:'+GREEN+'"></span>Margen saludable</span><span class="leg"><span class="sw" style="background:'+RED+'"></span>Margen crítico</span>';
- s.appendChild(el('text',{x:12,y:18,class:'axisLabel'},'Escala: USD'));
-}
-function drawDiscount(mode='profit'){
- const rows=data.discounts.map(d=>[Math.round(d[0]*100)+'%', mode==='profit'?d[2]:(mode==='sales'?d[1]:d[3]), d[1], d[2], d[3]]); drawHorizontal('#discountChart', rows, 1, {label:mode==='profit'?'Ganancia':mode==='sales'?'Ventas':'Operaciones', money:mode!=='ops', color:mode==='sales'?BLUE:VIOLET});
-}
-function drawLine(id, rows, opts={}){
- const c=$(id), s=svg(c,760,320), w=760,h=320,m={l:66,r:34,t:32,b:66}; const vals=rows.map(r=>r[1]), max=Math.max(...vals)*1.18,min=Math.min(0,...vals); gridLines(s,w,h,m,4,max,min,opts.suffix==='M'?'plain':'k'); const x=i=>m.l+i*(w-m.l-m.r)/(rows.length-1), y=v=>h-m.b-(v-min)/(max-min)*(h-m.t-m.b); let path='', area=`M ${m.l} ${h-m.b}`; rows.forEach((r,i)=>{path+=(i?' L ':'M ')+x(i)+' '+y(r[1]); area+=` L ${x(i)} ${y(r[1])}`}); area+=` L ${x(rows.length-1)} ${h-m.b} Z`; s.appendChild(el('path',{d:area,fill:opts.fill||'rgba(10,74,143,.12)'})); s.appendChild(el('path',{d:path,fill:'none',stroke:opts.color||BLUE,'stroke-width':4,'stroke-linecap':'round'})); rows.forEach((r,i)=>{const cir=el('circle',{cx:x(i),cy:y(r[1]),r:7,fill:opts.color||BLUE,class:'point'}); addTip(cir,`<b>${r[0]}</b><br>${opts.label||'Valor'}: ${opts.suffix==='M'?(r[1].toFixed(2)+'M USD'):(r[1]+'K USD')}`); s.appendChild(cir); s.appendChild(el('text',{x:x(i),y:h-m.b+26,'text-anchor':'middle',class:'labelText'},r[0])); s.appendChild(el('text',{x:x(i),y:y(r[1])-13,'text-anchor':'middle',class:'labelText'},opts.suffix==='M'?r[1].toFixed(2)+'M':r[1]+'K'));}); s.appendChild(el('line',{x1:m.l,x2:w-m.r,y1:h-m.b,y2:h-m.b,class:'zeroLine'})); s.appendChild(el('text',{x:12,y:18,class:'axisLabel'},opts.suffix==='M'?'Escala: millones USD':'Escala: miles USD'));
-}
-function donutPath(cx,cy,r0,r1,a0,a1){const p=(r,a)=>[cx+r*Math.cos(a),cy+r*Math.sin(a)]; const [x1,y1]=p(r1,a0),[x2,y2]=p(r1,a1),[x3,y3]=p(r0,a1),[x4,y4]=p(r0,a0); const large=a1-a0>Math.PI?1:0; return `M ${x1} ${y1} A ${r1} ${r1} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${r0} ${r0} 0 ${large} 0 ${x4} ${y4} Z`;}
-const rfmColors={'Champions':'#1b9e77','Loyal':'#377eb8','At Risk':'#e41a1c','Needs Attention':'#f39c12','New Customers':'#8bc34a','Lost':'#7f7f7f','Potential':'#6a5acd'};
-function drawRfmDonuts(){
- const c=$('#rfmDonuts'), s=svg(c,860,390,true), w=860,h=390;
- const draw=(cx, key, title)=>{let start=-Math.PI/2; data.rfm.forEach(d=>{const val=d[key], end=start+val/100*Math.PI*2; const sl=el('path',{d:donutPath(cx,145,62,102,start,end),fill:rfmColors[d.seg],class:'slice'}); addTip(sl,`<b>${d.seg}</b><br>${title}: ${fmtPct(val)}<br>Clientes: ${d.clients}<br>Revenue: ${fmtMoney(d.rev)}<br>Acción: ${d.action}`); s.appendChild(sl); start=end;}); s.appendChild(el('text',{x:cx,y:140,'text-anchor':'middle','font-weight':'900',fill:BLUE,'font-size':22},title)); s.appendChild(el('text',{x:cx,y:166,'text-anchor':'middle',class:'labelText'},'por segmento'));};
- draw(240,'pc','Clientes'); draw(610,'pr','Revenue');
- const legendX=82, legendY=292, colW=190; data.rfm.forEach((d,i)=>{const col=i%4,row=Math.floor(i/4),x=legendX+col*colW,y=legendY+row*28; const rr=el('rect',{x,y,width:13,height:13,rx:3,fill:rfmColors[d.seg],class:'slice'}); addTip(rr,`<b>${d.seg}</b><br>Clientes: ${d.clients}<br>Revenue: ${fmtMoney(d.rev)}<br>% revenue: ${fmtPct(d.pr)}`); s.appendChild(rr); s.appendChild(el('text',{x:x+19,y:y+11,class:'labelText'},`${d.seg} · ${fmtPct(d.pr)} rev.`));});
- s.appendChild(el('text',{x:240,y:270,'text-anchor':'middle',class:'chartNote'},'Distribución de cantidad de clientes'));
- s.appendChild(el('text',{x:610,y:270,'text-anchor':'middle',class:'chartNote'},'Distribución del revenue histórico'));
-}
-function drawRfmRevenue(){const rows=data.rfm.map(d=>[d.seg,d.rev]).sort((a,b)=>a[1]-b[1]); drawHorizontal('#rfmRevenue',rows,1,{label:'Revenue',color:GREEN});}
-function drawScatter(){
- const c=$('#rfmScatter'), s=svg(c,760,320), w=760,h=320,m={l:70,r:42,t:34,b:62}; const maxX=390,maxY=10; xScaleLines(s,w,h,m,4,0,maxX,'plain'); gridLines(s,w,h,m,5,maxY,0,'plain'); s.appendChild(el('line',{x1:m.l,x2:w-m.r,y1:h-m.b,y2:h-m.b,class:'zeroLine'})); s.appendChild(el('line',{x1:m.l,x2:m.l,y1:m.t,y2:h-m.b,class:'zeroLine'})); data.rfm.forEach(d=>{const x=m.l+d.rec/maxX*(w-m.l-m.r); const y=h-m.b-d.freq/maxY*(h-m.t-m.b); const r=8+Math.sqrt(d.rev)/95; const b=el('circle',{cx:x,cy:y,r,fill:rfmColors[d.seg],opacity:.78,class:'bubble'}); addTip(b,`<b>${d.seg}</b><br>Recencia: ${d.rec} días<br>Frecuencia: ${d.freq}<br>Revenue: ${fmtMoney(d.rev)}<br>Acción: ${d.action}`); s.appendChild(b); s.appendChild(el('text',{x:x,y:y-r-4,'text-anchor':'middle',class:'labelText'},d.seg.split(' ')[0]));}); s.appendChild(el('text',{x:w/2,y:h-8,'text-anchor':'middle',class:'axisLabel'},'Recencia: días desde última compra')); s.appendChild(el('text',{x:18,y:h/2,transform:`rotate(-90 18 ${h/2})`,'text-anchor':'middle',class:'axisLabel'},'Frecuencia promedio'));
-}
-function drawRfmTable(){const t=$('#rfmTable'); t.innerHTML='<thead><tr><th>Segmento</th><th>Clientes</th><th>% Rev.</th><th>Recencia</th><th>Ticket</th><th>Acción</th></tr></thead><tbody>'+data.rfm.map(d=>`<tr><td><b>${d.seg}</b></td><td>${d.clients}</td><td>${fmtPct(d.pr)}</td><td>${d.rec} días</td><td>${fmtMoney(d.ticket)}</td><td>${d.action}</td></tr>`).join('')+'</tbody>';}
-
-const chartTitles={
-  categoryChart:['Ventas vs ganancia por categoría','Comparación directa entre volumen facturado y aporte real de rentabilidad.'],
-  subSalesChart:['Ranking de subcategorías por ventas','Productos de alto volumen, aunque no necesariamente rentables.'],
-  subProfitChart:['Subcategorías por ganancia o pérdida','Subcategorías que crean o destruyen valor económico.'],
-  regionChart:['Desempeño regional','Ventas por región con referencia visual del margen efectivo.'],
-  discountChart:['Impacto de descuentos','Quiebre de rentabilidad desde descuentos del 30%.'],
-  annualChart:['Evolución anual de ventas','Tendencia de ventas acumuladas por año.'],
-  seasonChart:['Estacionalidad de ventas','Picos de fin de año y valles de enero/febrero.'],
-  rfmDonuts:['Distribución RFM','Doble dona con distribución de clientes y revenue por segmento.'],
-  rfmRevenue:['Revenue histórico por segmento RFM','Ranking económico de la cartera.'],
-  rfmScatter:['Mapa RFM: recencia vs frecuencia','El tamaño de burbuja representa revenue histórico.']
-};
-let modalZoom=1;
-function updateZoomLabel(){const btn=$('#zoomReset'); if(btn) btn.textContent=Math.round(modalZoom*100)+'%';}
-function openChartModal(chartEl){
-  const id=chartEl.id, src=$('#'+id), meta=chartTitles[id]||['Gráfico ampliado','Vista ampliada del análisis.'];
-  $('#modalTitle').textContent=meta[0]; $('#modalDesc').textContent=meta[1];
-  const modalChart=$('#modalChart'); modalChart.innerHTML=src.innerHTML;
-  modalZoom=1; modalChart.style.transform='scale(1)'; updateZoomLabel();
-  modalChart.querySelectorAll('[data-tip]').forEach(n=>{const decoded=(n.getAttribute('data-tip')||'').replace(/&quot;/g,'"'); if(decoded)n.dataset.tip=decoded; bindTipNode(n);});
-  $('#chartModal').classList.add('open'); $('#chartModal').setAttribute('aria-hidden','false');
-}
-function closeChartModal(){ $('#chartModal').classList.remove('open'); $('#chartModal').setAttribute('aria-hidden','true'); hideTip(); }
-function initModalTooltipDelegation(){
-  const modalChart=$('#modalChart'); if(!modalChart || modalChart.dataset.delegated==='1') return; modalChart.dataset.delegated='1';
-  modalChart.addEventListener('mousemove',e=>{const n=e.target.closest ? e.target.closest('[data-tip]') : null; if(n){const tip=(n.dataset.tip||n.getAttribute('data-tip')||'').replace(/&quot;/g,'"'); if(tip){showTip(e,tip); moveTip(e);}}});
-  modalChart.addEventListener('mouseleave',hideTip);
-}
-function initChartModal(){
-  $$('.chartCard').forEach(card=>{const chart=card.querySelector('.chart'); if(!chart||card.querySelector('.openChart'))return; const btn=document.createElement('button'); btn.className='openChart'; btn.type='button'; btn.textContent='Ampliar gráfico'; btn.addEventListener('click',e=>{e.stopPropagation();openChartModal(chart)}); card.appendChild(btn); chart.addEventListener('click',()=>openChartModal(chart));});
-  initModalTooltipDelegation();
-  $('#closeModal').addEventListener('click',closeChartModal);
-  $('#chartModal').addEventListener('click',e=>{if(e.target.id==='chartModal')closeChartModal()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeChartModal()});
-  $('#zoomIn').addEventListener('click',()=>{modalZoom=Math.min(1.8,+(modalZoom+.1).toFixed(2));$('#modalChart').style.transform=`scale(${modalZoom})`;updateZoomLabel();});
-  $('#zoomOut').addEventListener('click',()=>{modalZoom=Math.max(.6,+(modalZoom-.1).toFixed(2));$('#modalChart').style.transform=`scale(${modalZoom})`;updateZoomLabel();});
-  $('#zoomReset').addEventListener('click',()=>{modalZoom=1;$('#modalChart').style.transform='scale(1)';updateZoomLabel();});
-  updateZoomLabel();
-}
-function initCharts(){drawGroupedCategory();drawHorizontal('#subSalesChart',data.subTop,1,{label:'Ventas',color:BLUE});drawHorizontal('#subProfitChart',data.subProfit,1,{label:'Ganancia',color:GREEN});drawRegion();drawDiscount();drawLine('#annualChart',data.annual,{label:'Ventas',suffix:'M',color:BLUE});drawLine('#seasonChart',data.season,{label:'Ventas',color:AMBER,fill:'rgba(242,169,59,.16)'});drawRfmDonuts();drawRfmRevenue();drawScatter();drawRfmTable();}
-$$('[data-cat-mode]').forEach(b=>b.addEventListener('click',()=>{$$('[data-cat-mode]').forEach(x=>x.classList.remove('active'));b.classList.add('active');drawGroupedCategory(b.dataset.catMode)}));
-$$('[data-discount-mode]').forEach(b=>b.addEventListener('click',()=>{$$('[data-discount-mode]').forEach(x=>x.classList.remove('active'));b.classList.add('active');drawDiscount(b.dataset.discountMode)}));
-$$('[data-go]').forEach(b=>b.addEventListener('click',()=>{$$('[data-go]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelector(b.dataset.go).scrollIntoView({behavior:'smooth',block:'start'})}));
-$('#mobileMenu').addEventListener('click',()=>$('#navlinks').classList.toggle('open'));
-const sections=$$('.section'); const navLinks=$$('#navlinks a'); const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+en.target.id));}})},{rootMargin:'-35% 0px -58% 0px',threshold:0}); sections.forEach(s=>obs.observe(s));
-const fadeObs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting) en.target.classList.add('in')})},{threshold:.12}); $$('.fadeUp').forEach(e=>fadeObs.observe(e));
-window.addEventListener('resize',()=>{clearTimeout(window.__r); window.__r=setTimeout(initCharts,150)});
-
-function applyTheme(theme){
-  document.documentElement.setAttribute('data-theme',theme);
-  localStorage.setItem('supermarket-theme',theme);
-  const isDark=theme==='dark';
-  const icon=$('#themeIcon'), text=$('#themeText');
-  if(icon) icon.textContent=isDark?'☀️':'🌙';
-  if(text) text.textContent=isDark?'Claro':'Oscuro';
-}
-function initTheme(){
-  const saved=localStorage.getItem('supermarket-theme');
-  const preferred=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light';
-  applyTheme(saved||preferred);
-  const btn=$('#themeToggle');
-  if(btn) btn.addEventListener('click',()=>{
-    const current=document.documentElement.getAttribute('data-theme')||'light';
-    applyTheme(current==='dark'?'light':'dark');
-  });
-}
-
-initTheme();
-initCharts();
-initChartModal();
-</script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
