@@ -21,12 +21,12 @@ const RFM_COLORS = {
 };
 
 const chartMeta = {
-  categoryChart: ['Ventas y ganancia por categoría', 'Compara volumen de ventas y resultado económico por categoría.'],
+  categoryChart: ['Performance por categoría', 'Lectura ejecutiva del mix: volumen de ventas frente a contribución real de ganancia.'],
   subSalesChart: ['Top 10 subcategorías por ventas', 'Ranking de facturación de las subcategorías principales.'],
   subProfitChart: ['Ganancia por subcategoría', 'Muestra las líneas que generan margen y las que destruyen valor.'],
   regionChart: ['Ventas por región', 'Ventas regionales con referencia de margen efectivo.'],
   segmentChart: ['Ventas por segmento', 'Comparación de facturación por tipo de cliente.'],
-  discountChart: ['Impacto de descuentos', 'Relación entre política de descuentos y resultado económico.'],
+  discountChart: ['Pricing y descuentos', 'Identifica el punto en el que la promoción deja de impulsar ventas y empieza a destruir margen.'],
   annualChart: ['Evolución anual', 'Ventas y ganancias agregadas por año.'],
   monthlyChart: ['Evolución mensual', 'Serie temporal completa con picos recurrentes al cierre del año.'],
   rfmDonuts: ['Distribución RFM', 'Comparación entre participación de clientes y participación de revenue por segmento.'],
