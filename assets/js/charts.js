@@ -1,22 +1,23 @@
 
 const ChartColors = {
-  blue: '#0a4a8f',
-  blue2: '#3aa7df',
-  green: '#1f9d67',
+  blue: '#2f8f46',
+  blue2: '#f39c12',
+  green: '#69bf58',
   red: '#d64545',
-  amber: '#f2a93b',
-  violet: '#6a5acd',
+  amber: '#ffb347',
+  violet: '#8a6fd1',
+  cyan: '#2fb6aa',
   gray: '#7f8a9a'
 };
 
 const RFM_COLORS = {
-  Champions: '#1b9e77',
-  Loyal: '#377eb8',
-  'At Risk': '#e41a1c',
+  Champions: '#2f8f46',
+  Loyal: '#2fb6aa',
+  'At Risk': '#d64545',
   'Needs Attention': '#f39c12',
-  'New Customers': '#8bc34a',
-  Lost: '#7f7f7f',
-  Potential: '#6a5acd'
+  'New Customers': '#9ccc65',
+  Lost: '#7f8a9a',
+  Potential: '#8a6fd1'
 };
 
 const chartMeta = {
@@ -354,12 +355,12 @@ function drawLine(id, rows, xKey, yKey, opts={}){
 
 function drawAnnual(){
   const salesRows=PROJECT_DATA.annual.map(d=>({label:String(d.Year), value:d.sales}));
-  drawLine('#annualChart', salesRows, 'label', 'value', {label:'Ventas', money:true, color:ChartColors.blue, fill:'rgba(10,74,143,.14)'});
+  drawLine('#annualChart', salesRows, 'label', 'value', {label:'Ventas', money:true, color:ChartColors.blue, fill:'rgba(47,143,70,.14)'});
 }
 
 function drawMonthly(){
   const rows=PROJECT_DATA.monthly.map(d=>({label:d['Order Year-Month'], value:d.sales}));
-  drawLine('#monthlyChart', rows, 'label', 'value', {label:'Ventas', money:true, color:ChartColors.amber, fill:'rgba(242,169,59,.16)'});
+  drawLine('#monthlyChart', rows, 'label', 'value', {label:'Ventas', money:true, color:ChartColors.amber, fill:'rgba(243,156,18,.18)'});
 }
 
 function donutPath(cx,cy,r0,r1,a0,a1){

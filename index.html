@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PPIV · Proyecto Integrador · Supermarket Sales · Animaciones v4</title>
+  <title>PPIV · Proyecto Integrador · Supermarket Sales · Business Style v5</title>
   <meta name="description" content="Trabajo práctico final de PPIV: Proyecto Integrador - IFTS N°18 - Supermarket Sales 2014-2017." />
-  <link rel="stylesheet" href="assets/css/styles.css?v=4" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=5" />
 </head>
 <body>
   <header class="topbar">
     <nav class="nav">
       <a class="brand" href="#inicio">
-        <span class="brand-mark">PPIV</span>
+        <span class="brand-mark">🛒</span>
         <span>Proyecto Integrador</span>
       </a>
       <button id="mobileMenu" class="mobile-menu" type="button" aria-label="Abrir menú">Menú</button>
@@ -40,7 +40,7 @@
           <p>
             Trabajo práctico final de la materia <strong>PPIV: Proyecto Integrador</strong>,
             desarrollado para la carrera <strong>Técnico Superior en Ciencia de Datos e Inteligencia Artificial</strong>.
-            El proyecto transforma un dataset crudo de ventas en información accionable para la toma de decisiones.
+            El foco está puesto en convertir datos operativos de un supermercado en decisiones de negocio vinculadas a ventas, margen, pricing, clientes y estacionalidad.
           </p>
           <div class="meta-list">
             <span>Profesor: Hugo Damián Planiscig</span>
@@ -51,14 +51,20 @@
             <a class="btn primary" href="#dashboard">Explorar análisis</a>
             <a class="btn" href="#archivos">Ver entregables</a>
           </div>
+          <div class="business-strip">
+            <span class="business-chip">🛒 Ventas</span>
+            <span class="business-chip">💵 Margen</span>
+            <span class="business-chip">📦 Mix de productos</span>
+            <span class="business-chip">👥 Clientes</span>
+          </div>
         </div>
         <div class="hero-panel reveal">
-          <div class="hero-card">
-            <div class="mesh-line"></div>
-            <div class="hero-stats">
-              <div><b data-count="9994">0</b><span>filas crudas</span></div>
-              <div><b data-count="9864">0</b><span>filas limpias</span></div>
-              <div><b data-count="793">0</b><span>clientes</span></div>
+          <div class="hero-card business-hero">
+            <img class="hero-illustration" src="assets/img/hero-supermarket.svg" alt="Ilustración de supermercado, carrito y métricas de ventas" />
+            <div class="hero-stats business-stats">
+              <div><small>Ventas totales</small><b data-money="2271360.91">US$ 0</b><span>resultado comercial acumulado</span></div>
+              <div><small>Margen general</small><b data-percent="12.44">0%</b><span>profit sobre sales</span></div>
+              <div><small>Clientes</small><b data-count="793">0</b><span>base utilizada para RFM</span></div>
             </div>
           </div>
         </div>
@@ -70,7 +76,7 @@
         <h2>Resumen del trabajo práctico</h2>
         <div class="grid two">
           <article class="card reveal">
-            <h3>Del dato crudo al análisis de negocio</h3>
+            <h3>De la operación comercial al insight</h3>
             <p>
               El trabajo parte de una base de ventas de supermercado con inconsistencias de calidad.
               A partir de un proceso de limpieza, transformación y análisis exploratorio, se identificaron
@@ -78,7 +84,7 @@
             </p>
             <p>
               La salida del proceso fue un dataset depurado y preparado para visualización, junto con
-              un tablero en Power BI y documentación técnica del proceso realizado.
+              un tablero en Power BI, recomendaciones comerciales y documentación técnica del proceso realizado.
             </p>
           </article>
           <article class="card reveal">
@@ -184,8 +190,8 @@
         <div class="section-head">
           <h2>Análisis exploratorio y visualizaciones</h2>
           <p>
-            Los gráficos permiten recorrer los principales hallazgos del proyecto: rentabilidad por categoría,
-            subcategorías críticas, desempeño regional, efecto de descuentos y evolución temporal.
+            Los gráficos permiten recorrer los principales hallazgos comerciales del proyecto: mix de ventas, rentabilidad por categoría,
+            subcategorías críticas, desempeño regional, efecto de descuentos y evolución temporal del negocio.
           </p>
         </div>
 
@@ -232,12 +238,12 @@
 
         <div id="region" class="chart-group split">
           <article class="chart-card reveal">
-            <div class="chart-head"><div><h3>Ventas por región</h3><p>West lidera el volumen y Central muestra bajo margen relativo.</p></div><button class="chart-open" data-chart="regionChart">Ampliar</button></div>
+            <div class="chart-head"><div><h3>Desempeño comercial por región</h3><p>West lidera el volumen y Central muestra el punto más delicado en margen relativo.</p></div><button class="chart-open" data-chart="regionChart">Ampliar</button></div>
             <div id="regionChart" class="chart"></div>
             <div id="regionLegend" class="legend"></div>
           </article>
           <article class="chart-card reveal">
-            <div class="chart-head"><div><h3>Ventas por segmento</h3><p>Consumer concentra el volumen; Home Office tiene mayor ticket por línea.</p></div><button class="chart-open" data-chart="segmentChart">Ampliar</button></div>
+            <div class="chart-head"><div><h3>Mix comercial por segmento</h3><p>Consumer concentra el volumen; Home Office aporta un ticket promedio más alto.</p></div><button class="chart-open" data-chart="segmentChart">Ampliar</button></div>
             <div id="segmentChart" class="chart"></div>
           </article>
         </div>
@@ -246,7 +252,7 @@
           <article class="chart-card reveal">
             <div class="chart-head">
               <div>
-                <h3>Impacto de los descuentos en la rentabilidad</h3>
+                <h3>Política de descuentos y rentabilidad</h3>
                 <p>A partir del 30% de descuento la ganancia acumulada pasa a zona negativa.</p>
               </div>
               <div class="mini-controls">
@@ -343,12 +349,12 @@
           </p>
         </div>
         <div class="file-grid">
-          <article class="file-card reveal"><div class="file-icon">📄</div><div><h3>Informe final</h3><p>Documento técnico con metodología, análisis, resultados y recomendaciones.</p><a href="docs/informe-final-supermarket-sales.pdf" target="_blank">Abrir PDF →</a></div></article>
-          <article class="file-card reveal"><div class="file-icon">💻</div><div><h3>Notebook Colab</h3><p>Código fuente del proceso de limpieza, transformación, EDA y RFM.</p><a href="notebooks/notebook-proyecto-integrador.ipynb" target="_blank">Descargar notebook →</a></div></article>
-          <article class="file-card reveal"><div class="file-icon">📊</div><div><h3>Dashboard Power BI</h3><p>Archivo PBIX utilizado para la visualización final del trabajo.</p><a href="powerbi/dashboard-powerbi.pbix" target="_blank">Descargar PBIX →</a></div></article>
-          <article class="file-card reveal"><div class="file-icon">🧾</div><div><h3>Dataset crudo</h3><p>Archivo original recibido para limpieza y análisis exploratorio.</p><a href="data/df_sales_crudo.csv" target="_blank">Descargar CSV →</a></div></article>
-          <article class="file-card reveal"><div class="file-icon">✅</div><div><h3>Dataset limpio</h3><p>Base depurada y enriquecida con variables derivadas para análisis.</p><a href="data/df_sales_limpio_para_powerbi.csv" target="_blank">Descargar CSV limpio →</a></div></article>
-          <article class="file-card reveal"><div class="file-icon">📚</div><div><h3>Consigna</h3><p>Detalle de contexto, objetivos, entregables y comentarios de la materia.</p><a href="docs/consigna-ppiv-proyecto-integrador.md" target="_blank">Ver consigna →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon"><img src="assets/img/icon-report.svg" alt="Informe"></div><div><h3>Informe final</h3><p>Documento técnico con metodología, análisis, resultados y recomendaciones.</p><a href="docs/informe-final-supermarket-sales.pdf" target="_blank">Abrir PDF →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon"><img src="assets/img/icon-notebook.svg" alt="Notebook"></div><div><h3>Notebook Colab</h3><p>Código fuente del proceso de limpieza, transformación, EDA y RFM.</p><a href="notebooks/notebook-proyecto-integrador.ipynb" target="_blank">Descargar notebook →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon"><img src="assets/img/icon-dashboard.svg" alt="Power BI"></div><div><h3>Dashboard Power BI</h3><p>Archivo PBIX utilizado para la visualización final del trabajo.</p><a href="powerbi/dashboard-powerbi.pbix" target="_blank">Descargar PBIX →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon"><img src="assets/img/icon-rawdata.svg" alt="Dataset crudo"></div><div><h3>Dataset crudo</h3><p>Archivo original recibido para limpieza y análisis exploratorio.</p><a href="data/df_sales_crudo.csv" target="_blank">Descargar CSV →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon"><img src="assets/img/icon-clean.svg" alt="Dataset limpio"></div><div><h3>Dataset limpio</h3><p>Base depurada y enriquecida con variables derivadas para análisis.</p><a href="data/df_sales_limpio_para_powerbi.csv" target="_blank">Descargar CSV limpio →</a></div></article>
+          <article class="file-card reveal"><div class="file-icon"><img src="assets/img/icon-book.svg" alt="Consigna"></div><div><h3>Consigna</h3><p>Detalle de contexto, objetivos, entregables y comentarios de la materia.</p><a href="docs/consigna-ppiv-proyecto-integrador.md" target="_blank">Ver consigna →</a></div></article>
         </div>
       </div>
     </section>
@@ -430,8 +436,8 @@
 
   <div id="tooltip" class="tooltip"></div>
 
-  <script src="assets/js/data.js?v=4"></script>
-  <script src="assets/js/charts.js?v=4"></script>
-  <script src="assets/js/main.js?v=4"></script>
+  <script src="assets/js/data.js?v=5"></script>
+  <script src="assets/js/charts.js?v=5"></script>
+  <script src="assets/js/main.js?v=5"></script>
 </body>
 </html>
