@@ -128,14 +128,78 @@ function stagger(container){
 function animateLinePath(path){
   try{
     const len = path.getTotalLength();
+    path.dataset.lineLength = String(len);
     path.style.strokeDasharray = len;
     path.style.strokeDashoffset = len;
-    path.getBoundingClientRect();
-    requestAnimationFrame(() => {
-      path.style.transition = 'stroke-dashoffset 1.25s cubic-bezier(.2,.85,.2,1)';
-      path.style.strokeDashoffset = '0';
-    });
+    path.style.transition = 'none';
+    path.style.opacity = '0';
   }catch(e){}
+}
+
+function restartChartAnimation(chart){
+  if(!chart) return;
+
+  chart.classList.remove('animate');
+
+  const animatedNodes = chart.querySelectorAll('.bar-y,.bar-x,.bar-x-neg,.point,.bubble,.slice');
+  animatedNodes.forEach((node, index) => {
+    node.style.animation = 'none';
+    node.style.animationDelay = `${Math.min(index, 18) * 55}ms`;
+  });
+
+  const linePaths = chart.querySelectorAll('.line-path');
+  linePaths.forEach(path => {
+    try{
+      const len = Number(path.dataset.lineLength) || path.getTotalLength();
+      path.dataset.lineLength = String(len);
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.style.transition = 'none';
+      path.style.opacity = '0';
+    }catch(e){}
+  });
+
+  chart.getBoundingClientRect();
+
+  animatedNodes.forEach(node => {
+    node.style.animation = '';
+  });
+
+  chart.classList.add('animate');
+
+  linePaths.forEach((path, index) => {
+    try{
+      const len = Number(path.dataset.lineLength) || path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.style.opacity = '1';
+      window.setTimeout(() => {
+        path.style.transition = 'stroke-dashoffset 1.55s cubic-bezier(.2,.85,.2,1)';
+        path.style.strokeDashoffset = '0';
+      }, 130 + index * 120);
+    }catch(e){}
+  });
+}
+
+function initChartAnimations(){
+  const charts = document.querySelectorAll('.chart');
+  if(!charts.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        restartChartAnimation(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.28, rootMargin:'0px 0px -8% 0px'});
+
+  charts.forEach(chart => observer.observe(chart));
+}
+
+function animateChartById(id){
+  const chart = typeof id === 'string' ? document.getElementById(id) : id;
+  if(chart) restartChartAnimation(chart);
 }
 
 function drawGroupedBars(){

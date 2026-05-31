@@ -269,3 +269,124 @@ th{background:var(--soft);color:var(--blue);position:sticky;top:0}
   .modal-head{flex-direction:column}
   .modal-chart{min-height:390px;height:55vh}
 }
+
+
+/* ==========================================================
+   Animaciones reales de gráficos v4
+   Se ejecutan cuando cada gráfico entra en pantalla o cuando
+   se abre el modal. No corren al cargar la página oculta.
+   ========================================================== */
+
+.chart .bar-y,
+.chart .bar-x,
+.chart .bar-x-neg,
+.chart .point,
+.chart .bubble,
+.chart .slice,
+.modal-chart .bar-y,
+.modal-chart .bar-x,
+.modal-chart .bar-x-neg,
+.modal-chart .point,
+.modal-chart .bubble,
+.modal-chart .slice{
+  animation:none;
+  opacity:0;
+}
+
+.chart .bar-y,
+.modal-chart .bar-y{
+  transform-box:fill-box;
+  transform-origin:center bottom;
+  transform:scaleY(0);
+}
+
+.chart .bar-x,
+.modal-chart .bar-x{
+  transform-box:fill-box;
+  transform-origin:left center;
+  transform:scaleX(0);
+}
+
+.chart .bar-x-neg,
+.modal-chart .bar-x-neg{
+  transform-box:fill-box;
+  transform-origin:right center;
+  transform:scaleX(0);
+}
+
+.chart .point,
+.chart .bubble,
+.modal-chart .point,
+.modal-chart .bubble{
+  transform-box:fill-box;
+  transform-origin:center;
+  transform:scale(.35);
+}
+
+.chart .slice,
+.modal-chart .slice{
+  transform-box:fill-box;
+  transform-origin:center;
+  transform:scale(.92);
+}
+
+.chart.animate .bar-y,
+.modal-chart.animate .bar-y{
+  animation:chartBarYLoad 1.15s cubic-bezier(.2,.85,.2,1) both;
+}
+
+.chart.animate .bar-x,
+.chart.animate .bar-x-neg,
+.modal-chart.animate .bar-x,
+.modal-chart.animate .bar-x-neg{
+  animation:chartBarXLoad 1.15s cubic-bezier(.2,.85,.2,1) both;
+}
+
+.chart.animate .point,
+.chart.animate .bubble,
+.modal-chart.animate .point,
+.modal-chart.animate .bubble{
+  animation:chartPointPop .8s cubic-bezier(.2,.85,.22,1.25) both;
+}
+
+.chart.animate .slice,
+.modal-chart.animate .slice{
+  animation:chartSliceIn 1s cubic-bezier(.2,.85,.2,1) both;
+}
+
+.chart.animate .line-path,
+.modal-chart.animate .line-path{
+  opacity:1;
+}
+
+@keyframes chartBarYLoad{
+  0%{transform:scaleY(0);opacity:.15}
+  70%{opacity:1}
+  100%{transform:scaleY(1);opacity:.95}
+}
+
+@keyframes chartBarXLoad{
+  0%{transform:scaleX(0);opacity:.15}
+  70%{opacity:1}
+  100%{transform:scaleX(1);opacity:.95}
+}
+
+@keyframes chartPointPop{
+  0%{transform:scale(.35);opacity:0}
+  70%{transform:scale(1.14);opacity:1}
+  100%{transform:scale(1);opacity:1}
+}
+
+@keyframes chartSliceIn{
+  0%{transform:scale(.88);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .chart .bar-y,.chart .bar-x,.chart .bar-x-neg,.chart .point,.chart .bubble,.chart .slice,
+  .modal-chart .bar-y,.modal-chart .bar-x,.modal-chart .bar-x-neg,.modal-chart .point,.modal-chart .bubble,.modal-chart .slice{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+}

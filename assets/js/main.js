@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initCounters();
   drawAllCharts();
+  if(typeof initChartAnimations === 'function') initChartAnimations();
   initChartControls();
   initChartModal();
 });
@@ -119,6 +120,7 @@ function initChartControls(){
       document.querySelectorAll('[data-discount-mode]').forEach(x => x.classList.remove('active'));
       button.classList.add('active');
       drawDiscount(button.dataset.discountMode);
+      requestAnimationFrame(() => { if(typeof animateChartById === 'function') animateChartById('discountChart'); });
     });
   });
 }
@@ -165,6 +167,7 @@ function initChartModal(){
     modalChart.querySelectorAll('svg').forEach(svg => {
       svg.setAttribute('preserveAspectRatio', chartId === 'rfmDonuts' || chartId === 'rfmScatter' ? 'xMidYMid meet' : 'none');
     });
+    requestAnimationFrame(() => { if(typeof restartChartAnimation === 'function') restartChartAnimation(modalChart); });
     setZoom(1);
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
@@ -190,5 +193,5 @@ function initChartModal(){
 
 window.addEventListener('resize', () => {
   clearTimeout(window.__chartResize);
-  window.__chartResize = setTimeout(drawAllCharts, 180);
+  window.__chartResize = setTimeout(() => { drawAllCharts(); if(typeof initChartAnimations === 'function') initChartAnimations(); }, 180);
 });
