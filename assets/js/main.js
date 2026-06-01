@@ -15,7 +15,8 @@ function initTheme(){
   const button = document.getElementById('themeToggle');
   const icon = button?.querySelector('.theme-icon');
   const saved = localStorage.getItem('ppiv-theme');
-  const initial = saved || 'light';
+  const initial = saved || 'dark';
+
   html.setAttribute('data-theme', initial);
   if(icon) icon.textContent = initial === 'dark' ? '☀️' : '🌙';
 
